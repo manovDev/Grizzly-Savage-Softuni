@@ -4,8 +4,8 @@ const router = Router();
 const { homeService } = require('../services');
 
 router.get('/', async (req, res) => {
-    res.send('Hello from server');
-    return;
+    const response = homeService.message('Hello from server!');
+    return res.json(response);
 });
 
 
