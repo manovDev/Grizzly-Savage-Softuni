@@ -1,3 +1,4 @@
+import SearchProducts from './SearchProducts';
 import './Header.scss';
 
 function Header() {
@@ -6,7 +7,7 @@ function Header() {
             <div className="header-logo">
                 Logo
             </div>
-            
+            <SearchProducts />
         </header>
     );
 }
