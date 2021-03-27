@@ -5,6 +5,7 @@ const MainLayout = ({ children }) => {
     return (
         <div className="main-layout-wrapper">
             {/* header component */}
+            Header component
 
             <div className="main-layout-content">
                 {children}
