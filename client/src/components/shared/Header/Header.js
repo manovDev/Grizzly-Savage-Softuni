@@ -1,4 +1,5 @@
 import SearchProducts from './SearchProducts';
+import AuthLinks from './AuthLinks';
 import './Header.scss';
 
 function Header() {
@@ -8,6 +9,8 @@ function Header() {
                 Logo
             </div>
             <SearchProducts />
+            <AuthLinks />
+
         </header>
     );
 }
