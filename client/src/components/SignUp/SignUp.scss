@@ -1,2 +1,10 @@
 .sign-up {
+    display: flex;
+    justify-content: center;
+    padding-top: 100px;
+
+    form {
+        display: flex;
+        flex-flow: wrap column;
+    }
 }
