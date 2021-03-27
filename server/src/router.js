@@ -3,6 +3,6 @@ const router = Router();
 
 const controllers = require('./controllers');
 
-router.use('/', controllers.home);
+router.use('/user', controllers.user);
 
 module.exports = router;
