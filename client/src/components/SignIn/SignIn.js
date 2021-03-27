@@ -1,10 +1,13 @@
+import MainLayout from '../layouts/MainLayout';
 import './SignIn.scss';
 
 const SignIn = () => {
     return (
-        <div className="sign-in">
-            Sign In
-        </div>
+        <MainLayout> 
+            <div className="sign-in">
+                Sign In
+            </div>
+        </MainLayout>
     );
 }
 
