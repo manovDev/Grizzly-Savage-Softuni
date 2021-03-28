@@ -5,9 +5,27 @@ const verifyIdToken = require('../middlewares/verifyIdToken');
 const { userService } = require('../services');
 
 router.post('/signup', async (req, res) => {
-    const userRecord = await userService.signUp(req.body);
+    try {
+        const userRecord = await userService.signUp(req.body);
     
-    return res.json(userRecord);
+        return res.json(userRecord);
+    } catch (error) {
+        return res.status(400).json({ error });
+    }
+});
+
+router.post('/signin', verifyIdToken, async (req, res) => {
+    try {
+        const userRecord = await userService.signIn(req.body);
+    
+        return res.json(userRecord);
+    } catch (error) {
+        return res.status(400).json({ error });
+    }
+    
+});
+
+    
 });
 
 module.exports = router;
