@@ -1,5 +1,8 @@
 import { useState } from 'react';
 // import { useHistory } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { signUp } from '../../actions/userActions';
+
 import { Link } from 'react-router-dom';
 import MainLayout from '../layouts/MainLayout';
 import './SignUp.scss';
@@ -68,4 +71,8 @@ const SignUp = () => {
     );
 }
 
-export default SignUp;
+const mapDispatchToProps = {
+    signUp,
+}   
+
+export default connect(null, mapDispatchToProps)(SignUp);
