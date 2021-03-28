@@ -1,6 +1,10 @@
 const mongoose = require('mongoose');
 
 const UserSchema = new mongoose.Schema({
+    uid: {
+        type: String,
+        required: true
+    },
     firstName: {
         type: String,
         required: true
@@ -14,10 +18,9 @@ const UserSchema = new mongoose.Schema({
         required: true,
         unique: true
     },
-    password: {
+    role: {
         type: String,
-        required: true,
-        unique: true
+        default: 'user'
     },
     date: {
         type: Date,
