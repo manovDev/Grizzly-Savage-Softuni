@@ -1,6 +1,7 @@
 import {
     SIGNIN,
     VERIFY,
+    SIGNOUT,
 } from '../actions/actionTypes';
 
 const initialState = {
@@ -18,6 +19,10 @@ const userReducer = (state = initialState, action) => {
         case VERIFY:
             return {
                 ...state,
+            };
+        case SIGNOUT:
+            return {
+                ...initialState,
             };
         default:
             return {

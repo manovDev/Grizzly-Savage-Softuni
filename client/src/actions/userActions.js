@@ -1,6 +1,7 @@
 import {
     SIGNIN,
     VERIFY,
+    SIGNOUT,
 } from './actionTypes';
 
 import firebase from '../firebase';
@@ -13,6 +14,10 @@ import {
 export const signInSuccess = (userData) => ({
     type: SIGNIN,
     payload: userData,
+})
+
+export const signOutSuccess = () => ({
+    type: SIGNOUT,
 })
 
 export const verify = () => ({
@@ -61,4 +66,11 @@ export const signIn = (email, password) => async (dispatch) => {
                 return err;
             });
     
+}
+
+export const signOut = () => async (dispatch) => {
+    console.log('sign out');
+    
+    await firebase.auth().signOut();
+    dispatch(signOutSuccess());
 }

@@ -1,18 +1,23 @@
+import { connect } from 'react-redux';
 import SearchProducts from './SearchProducts';
 import AuthLinks from './AuthLinks';
 import './Header.scss';
 
-function Header() {
+function Header({ user }) {
     return (
         <header className="header">
             <div className="header-logo">
                 Logo
             </div>
             <SearchProducts />
-            <AuthLinks />
+            <AuthLinks user={user} />
 
         </header>
     );
 }
 
-export default Header;
+const mapStateToProps = state => ({
+    user: state.user.user,
+})
+
+export default connect(mapStateToProps, null)(Header);
