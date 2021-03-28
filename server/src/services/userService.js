@@ -25,7 +25,14 @@ const signIn = async ({ uid }) => {
     return user;
 }
 
+const verifyUser = async ({ uid }) => {
+    const user = await User.findOne({ uid }).exec();
+
+    return user;
+}
+
 module.exports = {
     signUp,
     signIn,
+    verifyUser
 }
