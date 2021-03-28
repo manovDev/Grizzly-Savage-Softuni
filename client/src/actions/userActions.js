@@ -1,7 +1,6 @@
-
 import { signUp as singUpService } from '../services/userService';
 
-export const signUp = async (data) => {
+export const signUp = (data) => async (dispatch) => {
     
     const response = await singUpService(data);
     const responseJSON = await response.json();
