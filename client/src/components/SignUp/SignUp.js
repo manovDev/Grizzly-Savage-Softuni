@@ -21,12 +21,28 @@ const SignUp = () => {
         }));
     }
 
+    const submitForm = async (e) => {
+        e.preventDefault();
+
+        if (formData.firstName && formData.lastName && formData.email && formData.password) {
+                try {
+                    await signUp(formData);
+                    
+                    // await signIn(formData.email, formData.password);
+
+                    // history.push('/sign-in');   
+                } catch (res) {
+                    console.log(res.error);
+                }      
+        }
+    }
+
     return (
         <MainLayout> 
             <div className="sign-up">
                 <div className="sign-up-content">
                     <h1>Sign Up</h1>
-                    <form>
+                    <form onSubmit={submitForm}>
                         <label htmlFor="firstName">First Name</label>
                         <input id="firstName" name="firstName" type="text" onChange={handleChange} placeholder="John"/>
 
