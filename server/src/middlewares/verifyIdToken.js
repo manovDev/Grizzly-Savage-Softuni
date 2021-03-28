@@ -1,0 +1,20 @@
+const admin = require('../config/firebase');
+
+module.exports = (req, res, next) => {
+    if (req.header('Authorization')) {
+        const idToken = req.header('Authorization').split(' ')[1] || req.header('Authorization');
+
+        admin.auth().verifyIdToken(idToken)
+            .then((decodedToken) => {
+
+                
+                next();
+            })
+            .catch((error) => {
+                res.status(401).json({ error: 'Unauthorized' });
+            });
+    } else {
+        res.status(401).json({ error: 'Unauthorized' });
+    }
+
+}

@@ -1,6 +1,7 @@
 const { Router } = require('express');
 const router = Router();
 
+const verifyIdToken = require('../middlewares/verifyIdToken');
 const { userService } = require('../services');
 
 router.post('/signup', async (req, res) => {
