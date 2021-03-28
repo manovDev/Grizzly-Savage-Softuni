@@ -1,18 +1,14 @@
-import {
-    SIGNIN,
-    SIGNOUT,
-    VERIFY,
-} from './actionTypes';
 
-export const signInSuccess = (userData) => ({
-    type: SIGNIN,
-    payload: userData,
-})
+import { signUp as singUpService } from '../services/userService';
 
-export const signOutSuccess = () => ({
-    type: SIGNOUT,
-})
+export const signUp = async (data) => {
+    
+    const response = await singUpService(data);
+    const responseJSON = await response.json();
 
-export const verify = () => ({
-    type: VERIFY,
-})
+    if (responseJSON.error) {
+        return { error: responseJSON.error };
+    } else {
+        return responseJSON;
+    }
+}
