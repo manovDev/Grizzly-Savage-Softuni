@@ -1,11 +1,13 @@
 import {
     SIGNIN,
+    VERIFY,
 } from './actionTypes';
 
 import firebase from '../firebase';
 import { 
     signUp as singUpService,
     signIn as singInService,
+    verifyUser
 } from '../services/userService';
 
 export const signInSuccess = (userData) => ({
@@ -13,6 +15,9 @@ export const signInSuccess = (userData) => ({
     payload: userData,
 })
 
+export const verify = () => ({
+    type: VERIFY,
+})
 
 export const signUp = (data) => async (dispatch) => {
     
@@ -24,6 +29,21 @@ export const signUp = (data) => async (dispatch) => {
     } else {
         return responseJSON;
     }
+}
+
+export const verifyAuth = () => (dispatch) => {
+    firebase.auth().onAuthStateChanged(async (user) => {
+        if (user) {
+            const uid = user.uid;
+            const idToken = user.za;
+            const response = await verifyUser(uid, idToken);
+            const userData = await response.json();
+            
+            dispatch(signInSuccess({user: userData}));
+        } else {
+            dispatch(verify());
+        }
+    });
 }
 
 export const signIn = (email, password) => async (dispatch) => {
