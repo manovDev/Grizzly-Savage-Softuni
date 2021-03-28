@@ -1,11 +1,18 @@
+import { useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { verifyAuth } from './actions/userActions';
 
 import Main from './components/Main';
 import SignIn from './components/SignIn';
 import SignUp from './components/SignUp';
 import './App.css';
 
-function App() {
+function App({ verifyAuth }) {
+    useEffect(() => {
+        verifyAuth();
+    }, [verifyAuth]);
+    
     return (
         <div className="App">
             <Router>
@@ -21,4 +28,8 @@ function App() {
     );
 }
 
-export default App;
+const mapDispatchToProps = {
+    verifyAuth,
+};
+
+export default connect(null, mapDispatchToProps)(App);
