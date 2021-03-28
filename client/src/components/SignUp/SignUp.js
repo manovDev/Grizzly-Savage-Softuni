@@ -1,9 +1,8 @@
 import { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { signUp } from '../../actions/userActions';
 
-import { Link } from 'react-router-dom';
 import MainLayout from '../layouts/MainLayout';
 import './SignUp.scss';
 
