@@ -1,5 +1,5 @@
 import { useState } from 'react';
-// import { useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { signUp } from '../../actions/userActions';
 
@@ -7,8 +7,9 @@ import { Link } from 'react-router-dom';
 import MainLayout from '../layouts/MainLayout';
 import './SignUp.scss';
 
-const SignUp = () => {
-    // const history = useHistory();
+const SignUp = ({ signUp }) => {
+    
+    const history = useHistory();
     const [formData, setFormData] = useState({
         firstName: null,
         lastName: null,
@@ -30,10 +31,8 @@ const SignUp = () => {
         if (formData.firstName && formData.lastName && formData.email && formData.password) {
                 try {
                     await signUp(formData);
-                    
-                    // await signIn(formData.email, formData.password);
 
-                    // history.push('/sign-in');   
+                    history.push('/sign-in');   
                 } catch (res) {
                     console.log(res.error);
                 }      
