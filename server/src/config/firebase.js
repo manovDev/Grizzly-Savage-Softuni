@@ -6,3 +6,5 @@ var serviceAccount = require("./grizzly-savage-firebase-adminsdk-qowzk-907964423
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount)
 });
+
+module.exports = admin;
