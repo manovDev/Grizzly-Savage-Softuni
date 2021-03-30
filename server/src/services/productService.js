@@ -16,7 +16,14 @@ const edit = async ({ _id, title, image, price, brand, model, description, qtty 
     return editedProduct;
 }
 
+const del = async ({ _id }) => {
+    const deletedProduct = await Product.findOneAndDelete({_id});
+    
+    return deletedProduct;
+}
+
 module.exports = {
     create,
-    edit
+    edit,
+    del
 }
