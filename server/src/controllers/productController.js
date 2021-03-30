@@ -6,7 +6,17 @@ const { productService } = require('../services');
 
 
 //TOTO: Add verify if the request is made from an admin
-router.post('/create-product', async (req, res) => {
+router.get('/get-all', async (req, res) => {
+    try {
+        const productsRecord = await productService.getAll(req.body);
+    
+        return res.status(200).json(productsRecord);
+    } catch (error) {
+        return res.status(400).json({ error });
+    }
+});
+
+router.post('/create', async (req, res) => {
     try {
         const productRecord = await productService.create(req.body);
     
@@ -16,7 +26,7 @@ router.post('/create-product', async (req, res) => {
     }
 });
 
-router.put('/edit-product', async (req, res) => {
+router.put('/edit', async (req, res) => {
     try {
         const productRecord = await productService.edit(req.body);
     
@@ -26,7 +36,7 @@ router.put('/edit-product', async (req, res) => {
     }
 });
 
-router.delete('/delete-product', async (req, res) => {
+router.delete('/delete', async (req, res) => {
     try {
         const productRecord = await productService.del(req.body);
     
