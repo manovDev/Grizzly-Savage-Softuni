@@ -1,5 +1,11 @@
 const Product = require('../models/Product');
 
+const getAll = async () => {
+    const allProducts = await Product.find();
+    
+    return await allProducts;
+}
+
 const create = async ({ title, image, price, brand, model, description, qtty }) => {
     const newProduct = new Product({ title, image, price, brand, model, description, qtty });
     
@@ -23,6 +29,7 @@ const del = async ({ _id }) => {
 }
 
 module.exports = {
+    getAll,
     create,
     edit,
     del
