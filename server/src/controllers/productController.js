@@ -12,8 +12,16 @@ router.post('/create-product', async (req, res) => {
     
         return res.json(productRecord);
     } catch (error) {
-        console.log(error);
-        
+        return res.status(400).json({ error });
+    }
+});
+
+router.put('/edit-product', async (req, res) => {
+    try {
+        const productRecord = await productService.edit(req.body);
+    
+        return res.json(productRecord);
+    } catch (error) {
         return res.status(400).json({ error });
     }
 });
