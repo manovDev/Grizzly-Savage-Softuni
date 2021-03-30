@@ -1,14 +1,22 @@
+import { connect } from 'react-redux';
+
 import MainLayout from '../layouts/MainLayout';
+import Products from '../Main/Products';
 import './Main.scss';
 
-const Main = () => {
+const Main = ({ user }) => {
+
     return (
         <MainLayout>
             <main className="main-wrapper">
-                Main component
+                <Products />
             </main>
         </MainLayout>
     );
 }
 
-export default Main;
+const mapStateToProps = (state) => ({
+    user: state.user.user,
+});
+
+export default connect(mapStateToProps, null)(Main);
