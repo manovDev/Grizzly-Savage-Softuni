@@ -1,2 +1,13 @@
 .product-item {
+    width: 33.333%;
+    min-width: 300px;
+    padding: 20px 20px 50px;
+    font-size: 15px;
+    text-align: center;
+    overflow-x: hidden;
+    display: inline-block;
+
+    .product-image {
+        width: 100%;
+    }
 }
