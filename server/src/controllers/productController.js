@@ -16,6 +16,16 @@ router.get('/get-all', async (req, res) => {
     }
 });
 
+router.get('/:productId', async (req, res) => {
+    try {
+        const productRecord = await productService.getOne(req.params.productId);
+    
+        return res.status(200).json(productRecord);
+    } catch (error) {
+        return res.status(400).json({ error });
+    }
+});
+
 router.post('/create', async (req, res) => {
     try {
         const productRecord = await productService.create(req.body);
