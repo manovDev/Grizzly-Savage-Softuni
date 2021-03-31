@@ -6,18 +6,25 @@ const ProductItem = ({
         _id,
         title,
         image,
+        description,
         price,
     } 
 }) => {
 
     return (
         <div className="product-item" data-id={_id}>
-            <Link to={"/product/details/" + _id}>
-                <img className="product-image" src={image} alt={title}/>
-            </Link>
-            <h5>{title}</h5>
-            <span>${price}</span>
-            <button>Add to cart</button>
+            <div className="product-container">
+                <Link to={"/product/" + _id}>
+                    <img className="product-image" src={image} alt={title}/>
+                </Link>
+            </div>
+            <div className="product-detail">
+                <Link className="product-title" to={"/product/" + _id}>
+                    {title}
+                </ Link>
+                <div className="product-price">${price.toFixed(2)}</div>
+                <button className="add-to-cart-btn">Add To Cart</button>
+            </div>
         </div>
     );
 }
