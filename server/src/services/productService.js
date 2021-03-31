@@ -2,7 +2,7 @@ const Product = require('../models/Product');
 
 const getAll = async () => {
     try {
-        const allProducts = await Product.find();
+        const allProducts = await Product.find().populate('category');
     
         return await allProducts;
     } catch (error) {
@@ -10,9 +10,19 @@ const getAll = async () => {
     }
 }
 
-const create = async ({ title, image, price, brand, model, description, qtty }) => {
+const getOne = async (_id) => {
     try {
-        const newProduct = new Product({ title, image, price, brand, model, description, qtty });
+        const product = await Product.findById(_id).populate('category');
+    
+        return await product;
+    } catch (error) {
+        throw error;
+    }
+}
+
+const create = async ({ title, image, price, category, brand, model, description, qtty }) => {
+    try {
+        const newProduct = new Product({ title, image, price, category, brand, model, description, qtty });
     
         return await newProduct.save();
     } catch (error) {
@@ -20,11 +30,11 @@ const create = async ({ title, image, price, brand, model, description, qtty }) 
     }
 }
 
-const edit = async ({ _id, title, image, price, brand, model, description, qtty }) => {
+const edit = async ({ _id, title, image, price, category, brand, model, description, qtty }) => {
     try {
         const editedProduct = await Product.findOneAndUpdate(
             {_id},
-            {title, image, price, brand, model, description, qtty},
+            {title, image, price, category, brand, model, description, qtty},
             {new: true}
             );
         
@@ -48,5 +58,6 @@ module.exports = {
     getAll,
     create,
     edit,
-    del
+    del,
+    getOne
 }
