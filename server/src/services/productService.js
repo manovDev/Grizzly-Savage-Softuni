@@ -2,7 +2,7 @@ const Product = require('../models/Product');
 
 const getAll = async () => {
     try {
-        const allProducts = await Product.find().populate('category');
+        const allProducts = await Product.find().populate('category').populate('brand');
     
         return await allProducts;
     } catch (error) {
@@ -12,7 +12,7 @@ const getAll = async () => {
 
 const getOne = async (_id) => {
     try {
-        const product = await Product.findById(_id).populate('category');
+        const product = await Product.findById(_id).populate('category').populated('brand');
     
         return await product;
     } catch (error) {
