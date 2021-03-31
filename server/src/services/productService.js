@@ -10,9 +10,19 @@ const getAll = async () => {
     }
 }
 
-const create = async ({ title, image, price, brand, model, description, qtty }) => {
+const getOne = async (_id) => {
     try {
-        const newProduct = new Product({ title, image, price, brand, model, description, qtty });
+        const product = await Product.findById(_id).populate('category');
+    
+        return await product;
+    } catch (error) {
+        throw error;
+    }
+}
+
+const create = async ({ title, image, price, category, brand, model, description, qtty }) => {
+    try {
+        const newProduct = new Product({ title, image, price, category, brand, model, description, qtty });
     
         return await newProduct.save();
     } catch (error) {
@@ -48,5 +58,6 @@ module.exports = {
     getAll,
     create,
     edit,
-    del
+    del,
+    getOne
 }
