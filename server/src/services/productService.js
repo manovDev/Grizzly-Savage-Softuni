@@ -30,11 +30,11 @@ const create = async ({ title, image, price, category, brand, model, description
     }
 }
 
-const edit = async ({ _id, title, image, price, brand, model, description, qtty }) => {
+const edit = async ({ _id, title, image, price, category, brand, model, description, qtty }) => {
     try {
         const editedProduct = await Product.findOneAndUpdate(
             {_id},
-            {title, image, price, brand, model, description, qtty},
+            {title, image, price, category, brand, model, description, qtty},
             {new: true}
             );
         
