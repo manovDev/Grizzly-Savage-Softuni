@@ -6,7 +6,6 @@ const ProductItem = ({
         _id,
         title,
         image,
-        description,
         price,
     } 
 }) => {
