@@ -12,16 +12,20 @@ const Products = ({ products, getAllProducts }) => {
 
     return (
         <section className="products-wrapper">
-            {
-                products && products
-                    .map((product, index) =>
-                        (
-                        <ProductItem
-                            key={index}
-                            productData={product} />
+            <ul>
+                {
+                    products && products
+                        .map((product, index) =>
+                            (
+                                <li>
+                                    <ProductItem
+                                        key={index}
+                                        productData={product} />
+                                </li>
+                            )
                         )
-                    )
-            }
+                }
+            </ul>
         </section>
     );
 }
