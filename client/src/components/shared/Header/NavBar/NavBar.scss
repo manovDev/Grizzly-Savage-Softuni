@@ -38,9 +38,18 @@
                 a {
                     text-decoration: none;
                     color: #52493a;
+                    transition: all 0.2s ease-in-out;
+
+                    &:hover {
+                        color: orange;
+                    }
 
                 }
             }
+        }
+
+        .nav-additions {
+            display: flex;
         }
     }
 }
