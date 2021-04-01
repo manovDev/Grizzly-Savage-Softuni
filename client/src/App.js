@@ -6,6 +6,7 @@ import { verifyAuth } from './actions/userActions';
 import Main from './components/Main';
 import SignIn from './components/SignIn';
 import SignUp from './components/SignUp';
+import CartPage from './components/CartPage';
 import './App.css';
 
 function App({ verifyAuth }) {
@@ -22,6 +23,8 @@ function App({ verifyAuth }) {
                     <Route path="/sign-in" component={SignIn} />
                     
                     <Route path="/sign-up" component={SignUp} />
+
+                    <Route path="/cart" component={CartPage} />
                 </Switch>
             </Router>
         </div>
