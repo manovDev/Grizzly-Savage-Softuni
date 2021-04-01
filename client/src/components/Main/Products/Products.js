@@ -15,11 +15,10 @@ const Products = ({ products, getAllProducts }) => {
             <ul>
                 {
                     products && products
-                        .map((product, index) =>
+                        .map((product) =>
                             (
-                                <li>
+                                <li key={product._id}>
                                     <ProductItem
-                                        key={index}
                                         productData={product} />
                                 </li>
                             )
