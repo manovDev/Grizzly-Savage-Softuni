@@ -1,0 +1,44 @@
+.product-qtty {
+
+    .reduceCounter,
+    .incCounter {
+        border: none;
+        outline: none;
+        width: 25px;
+        height: 25px;
+        border-radius: 5px;
+        color: white;
+        transition: all 0.2s ease-in-out;
+        opacity: 1;
+        
+        &:hover {
+            opacity: 0.5;
+        }
+    }
+
+    .reduceCounter {
+        background-color: #D4333B;
+    }
+    
+    .incCounter {
+        background-color: #0478FA;
+    }
+
+    input {
+        width: 50px;
+        text-align: center;
+        border: none;
+        outline: none;
+        background-color: white;
+    }
+
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    input[type=number] {
+        -moz-appearance: textfield;
+    }
+}

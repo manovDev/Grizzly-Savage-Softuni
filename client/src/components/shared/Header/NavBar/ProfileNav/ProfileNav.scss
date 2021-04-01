@@ -7,6 +7,15 @@
         font-size: 24px;
         cursor: pointer;
         padding: 10px;
+
+        svg {
+            fill: #52493a;
+            transition: all 0.2s ease-in-out;
+
+            &:hover {
+                fill: orange;
+            }
+        }
     }
 
     .profile-icon-wrapper:hover + ul {

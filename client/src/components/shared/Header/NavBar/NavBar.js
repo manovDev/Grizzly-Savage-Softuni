@@ -1,5 +1,8 @@
 import { Link } from 'react-router-dom';
+
 import gsLogo from './assets/grizzly-savage-logo.png';
+import CartLink from './CartLink';
+
 import SearchProducts from './SearchProducts';
 import ProfileNav from './ProfileNav';
 import './NavBar.scss';
@@ -40,7 +43,11 @@ const NavBar = ({ user }) => {
                     </li>
                 </ul>
                 
-                <ProfileNav user={user} />
+                <div className="nav-additions">
+                    <ProfileNav user={user} />
+
+                    <CartLink />
+                </div>
             </nav>
         </div>
     );
