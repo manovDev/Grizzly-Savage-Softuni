@@ -1,5 +1,6 @@
 import {
     ADD_TO_CART,
+    UPDATE_CART,
 } from './actionTypes';
 
 import {
@@ -8,6 +9,16 @@ import {
 
 export const addToCartSuccess = (product) => ({
     type: ADD_TO_CART,
+    payload: product
+})
+
+export const updateCartSuccess = (product) => ({
+    type: UPDATE_CART,
+    payload: product
+})
+
+export const removeProductSuccess = (product) => ({
+    type: REMOVE_PRODUCT,
     payload: product
 })
 
