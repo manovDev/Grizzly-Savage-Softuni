@@ -8,6 +8,7 @@ import SignIn from './components/SignIn';
 import SignUp from './components/SignUp';
 import CartPage from './components/CartPage';
 import ProductDetails from './components/ProductDetails';
+import OrderShipping from './components/OrderShipping';
 import './App.css';
 
 function App({ verifyAuth }) {
@@ -28,6 +29,8 @@ function App({ verifyAuth }) {
                     <Route path="/cart" component={CartPage} />
 
                     <Route path="/product/:productId" component={ProductDetails} />
+
+                    <Route path="/order/shipping" component={OrderShipping} />
                 </Switch>
             </Router>
         </div>
