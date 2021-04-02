@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 
 import { useState, useEffect } from 'react';
+import { getOne as getOneProduct } from '../../services/productService';
 
 import MainLayout from '../layouts/MainLayout';
 import  ProductDetailsCounter from './ProductDetailsCounter';
@@ -8,6 +9,35 @@ import  ProductDetailsCounter from './ProductDetailsCounter';
 import './ProductDetails.scss';
 
 const ProductDetails = ({ user, addToCart }) => {
+    const [product, setProduct] = useState({
+        _id: "",
+        brand: {name: ""},
+        category: {name: ""},
+        description: "",
+        image: "",
+        model: "",
+        price: 0,
+        qtty: 0,
+        title: ""
+    });
+    const productId = window.location.pathname.split('/product/')[1];
+
+    const [productCounter, setProductCounter] = useState({units: 1, lastAction: ''});
+
+    useEffect(() => {
+        getOneProduct(productId)
+            .then(res => res.json())
+            .then(data => {
+                setProduct(data);
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    }, [productId]);
+
+    const handleAddToCart = () => {
+        addToCart(product._id, productCounter.units, 'details');
+    }
 
     return (
         <MainLayout>
