@@ -12,7 +12,7 @@ const getAll = async () => {
 
 const getOne = async (_id) => {
     try {
-        const product = await Product.findById(_id).populate('category').populated('brand');
+        const product = await Product.findById(_id).populate('category').populate('brand');
     
         return await product;
     } catch (error) {
