@@ -24,7 +24,7 @@ export const removeProductSuccess = (product) => ({
 })
 
 
-export const addToCart = (productId, productUnits) => async (dispatch) => {
+export const addToCart = (productId, productUnits, loc) => async (dispatch) => {
     try {
         const res = await getOneProduct(productId);
         const data = await res.json();
@@ -36,6 +36,7 @@ export const addToCart = (productId, productUnits) => async (dispatch) => {
 
         if(data._id) {
             data.units = productUnits;
+            data.loc = loc;
             dispatch(addToCartSuccess(data));
         }
     } catch (error) {
