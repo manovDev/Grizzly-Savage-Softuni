@@ -1,8 +1,19 @@
+import useFetch from '../../hooks/useFetch';
 import OrderSteps from '../shared/OrderSteps';
 import MainLayout from '../layouts/MainLayout';
 import './OrderShipping.scss';
 
 const OrderShipping = () => {
+    const [countriesState] = useFetch(
+        'https://ajayakv-rest-countries-v1.p.rapidapi.com/rest/v1/all',
+        {
+            'method': 'GET',
+            'headers': {
+                'x-rapidapi-key': 'cfae0a60dcmsh9c04c24b2e05c4bp17dbd8jsna8830832a096',
+                'x-rapidapi-host': 'ajayakv-rest-countries-v1.p.rapidapi.com'
+            }
+        });
+
 
     return (
         <MainLayout>
