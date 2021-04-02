@@ -1,31 +1,30 @@
 import { connect } from 'react-redux';
-import { useEffect } from 'react';
 
 import { Link } from 'react-router-dom';
-import { getAll as getAllProducts } from '../../../actions/productActions';
 
 import ProductCounter from './ProductCounter';
+import { removeProduct } from '../../../actions/cartActions';
+
 import { BsFillTrashFill as RemoveIcon } from 'react-icons/bs';
 import './CartList.scss';
 
-const CartList = ({ user, products, getAllProducts }) => {
-    useEffect(() => {
-        getAllProducts();
-        
-    }, [getAllProducts]);
+const CartList = ({ user, cart, removeProduct }) => {
+    const handleRemoveProduct = (e) => {
+        removeProduct(e.currentTarget.id);
+    }
 
     return (
         
         <div className="cart-products-wrapper">
             <h2 className="cart-title">
-                Your cart: <span>{products.length} items</span>
+                Your cart: <span>{cart.qtty} items</span>
             </h2>
             <ul>
                 {
-                    products && products
-                        .map((product, index) =>
+                    cart.products && cart.products
+                        .map((product) =>
                             (
-                                <li key={index}>
+                                <li key={product._id}>
                                     <div className="selected-product">
                                         <img className="product-image" src={product.image} alt={product.title}/>
 
@@ -37,10 +36,15 @@ const CartList = ({ user, products, getAllProducts }) => {
                                             ${product.price.toFixed(2)}
                                         </div>
 
-                                        <ProductCounter qtty={product.qtty}/>
+                                        <ProductCounter
+                                            productId={product._id}
+                                            productUnits={product.units}
+                                            maxQtty={product.qtty}/>
                                         
                                         <div className="product-remove-btn">
-                                            <button><RemoveIcon /></button>
+                                            <button id={product._id} onClick={handleRemoveProduct}>
+                                                <RemoveIcon />
+                                            </button>
                                         </div>
                                     </div>
                                 </li>
@@ -54,11 +58,11 @@ const CartList = ({ user, products, getAllProducts }) => {
 
 const mapStateToProps = (state) => ({
     user: state.user.user,
-    products: state.products.products,
+    cart: state.cart,
 });
 
 const mapDispatchToProps = {
-    getAllProducts,
+    removeProduct,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CartList);
