@@ -11,6 +11,7 @@ import ProductDetails from './components/ProductDetails';
 import OrderShipping from './components/OrderShipping';
 import OrderConfirm from './components/OrderConfirm';
 import OrderPayment from './components/OrderPayment';
+import OrderSuccess from './components/OrderSuccess';
 import './App.css';
 
 function App({ verifyAuth }) {
@@ -37,6 +38,8 @@ function App({ verifyAuth }) {
                     <Route path="/order/confirm" component={OrderConfirm} />
 
                     <Route path="/order/payment" component={OrderPayment} />
+
+                    <Route path="/order/success" component={OrderSuccess} />
                 </Switch>
             </Router>
         </div>
