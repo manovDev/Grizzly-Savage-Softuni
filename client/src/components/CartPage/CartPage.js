@@ -5,12 +5,12 @@ import CartList from './CartList';
 import OrderSummary from './OrderSummary';
 import './CartPage.scss';
 
-const CartPage = ({ user }) => {
+const CartPage = ({ user, cart }) => {
     return (
         <MainLayout>
             <section className="cart-page">
                 <CartList />
-
+                
                 <OrderSummary />
             </section>
         </MainLayout>
@@ -19,6 +19,7 @@ const CartPage = ({ user }) => {
 
 const mapStateToProps = (state) => ({
     user: state.user.user,
+    cart: state.cart
 });
 
 export default connect(mapStateToProps, null)(CartPage);
