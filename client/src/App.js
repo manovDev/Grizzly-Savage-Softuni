@@ -7,6 +7,7 @@ import Main from './components/Main';
 import SignIn from './components/SignIn';
 import SignUp from './components/SignUp';
 import CartPage from './components/CartPage';
+import ProductDetails from './components/ProductDetails';
 import './App.css';
 
 function App({ verifyAuth }) {
@@ -25,6 +26,8 @@ function App({ verifyAuth }) {
                     <Route path="/sign-up" component={SignUp} />
 
                     <Route path="/cart" component={CartPage} />
+
+                    <Route path="/product/:productId" component={ProductDetails} />
                 </Switch>
             </Router>
         </div>

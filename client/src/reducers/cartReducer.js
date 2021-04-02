@@ -17,11 +17,21 @@ const cartReducer = (state = initialState, action) => {
             let foundProductIndex = productsArr.findIndex(x => x._id === action.payload._id);
 
             if(foundProductIndex === -1) {
-                let newItem = Object.assign(action.payload, {units: 1});
+                let newItem;
+                let totalPrice;
+
+                if(action.payload.loc === 'details') {
+                    newItem = Object.assign(action.payload, {units: action.payload.units});
+                    totalPrice = state.totalPrice + (action.payload.price * action.payload.units);
+                } else {
+                    newItem = Object.assign(action.payload, {units: 1});
+                    totalPrice = state.totalPrice + action.payload.price;
+
+                }
                 return {
                     ...state,
                     products: [...state.products, newItem],
-                    totalPrice: state.totalPrice + action.payload.price,
+                    totalPrice: totalPrice,
                     qtty: state.products.length + 1
                 }
                 
