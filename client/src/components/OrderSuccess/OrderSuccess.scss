@@ -1,2 +1,22 @@
 .order-success-wrapper {
+    width: 100%;
+    max-width: 1440px;
+    margin-top: 200px;
+    display: flex;
+    justify-content: center;
+    flex-flow: wrap column;
+    align-items: center;
+
+    img {
+        width: 300px;
+    }
+
+    h2 {
+        width: 500px;
+        text-align: center;
+    }
+
+    a {
+        font-weight: 500;
+    }
 }
