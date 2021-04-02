@@ -1,6 +1,7 @@
 import {
     ADD_TO_CART,
     UPDATE_CART,
+    REMOVE_PRODUCT
 } from './actionTypes';
 
 import {
@@ -42,3 +43,14 @@ export const addToCart = (productId, productUnits) => async (dispatch) => {
     }
 }
 
+export const updateCart = (productCounter, _id) => async (dispatch) => {
+    const data = {productCounter, _id};
+
+    dispatch(updateCartSuccess(data));
+}
+
+export const removeProduct = (id) => async (dispatch) => {
+    const data = {id};
+    
+    dispatch(removeProductSuccess(data));
+}
