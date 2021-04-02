@@ -1,3 +1,4 @@
+import OrderSteps from '../shared/OrderSteps';
 import MainLayout from '../layouts/MainLayout';
 import './OrderShipping.scss';
 
@@ -6,6 +7,7 @@ const OrderShipping = () => {
     return (
         <MainLayout>
             <section className="order-shipping-wrapper">
+                <OrderSteps steps={["shipping"]}/>
 
                 <div className="shipping-form">
                     <h1>Shipping Info</h1>
@@ -22,6 +24,25 @@ const OrderShipping = () => {
                         <select id="country" name="country" onChange={setStateForm}>
                             <option label="Select a country" value="0">Select a country ... </option>
 
+                        {
+                            countriesState 
+                            ? countriesState.map((country, index) => (
+                                    <option
+                                        key={index}
+                                        value={country.name}
+                                        label={country.name}>
+                                            {country.name}
+                                    </option>
+                                    )
+                                )
+                            :   (
+                                    <option
+                                        value="Loading..."
+                                        label="Loading...">
+                                            Loading...
+                                    </option>
+                                )
+                        }
                         </select>
                         <button className="continue-btn">Continue</button>
                     </form>
