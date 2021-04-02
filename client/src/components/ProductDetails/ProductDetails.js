@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 
 import { useState, useEffect } from 'react';
+import { addToCart } from '../../actions/cartActions';
 import { getOne as getOneProduct } from '../../services/productService';
 
 import MainLayout from '../layouts/MainLayout';
@@ -103,5 +104,9 @@ const mapStateToProps = (state) => ({
     user: state.user.user,
     cart: state.cart
 });
+
+const mapDispatchToProps = {
+    addToCart,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductDetails);
