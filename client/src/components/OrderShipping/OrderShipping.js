@@ -1,9 +1,14 @@
 import useFetch from '../../hooks/useFetch';
+import useForm from '../../hooks/useForm';
+import { useHistory } from 'react-router-dom';
+
 import OrderSteps from '../shared/OrderSteps';
 import MainLayout from '../layouts/MainLayout';
 import './OrderShipping.scss';
 
 const OrderShipping = () => {
+    let history = useHistory();
+
     const [countriesState] = useFetch(
         'https://ajayakv-rest-countries-v1.p.rapidapi.com/rest/v1/all',
         {
@@ -14,6 +19,22 @@ const OrderShipping = () => {
             }
         });
 
+    const [stateForm, setStateForm] = useForm({
+        address: '',
+        city: '',
+        phone: '',
+        postalCode: '',
+        country: '',
+    });
+    
+    const submitForm = async (e) => {
+        e.preventDefault();
+        const { address, city, phone, postalCode, country } = stateForm;
+
+        if (address && city && phone && postalCode && country) {
+            history.push('confirm');
+        }
+    }
 
     return (
         <MainLayout>
