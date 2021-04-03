@@ -1,17 +1,31 @@
-// import useForm from '../../hooks/useForm';
+import { connect } from 'react-redux';
+
 import { useHistory } from 'react-router-dom';
+import { useContext } from 'react';
+import { ProcessingOrder } from '../../contexts/ProcessingOrder';
+import { placeOrder } from '../../services/orderService';
 
 import OrderSteps from '../shared/OrderSteps';
 import MainLayout from '../layouts/MainLayout';
 import './OrderPayment.scss';
 
-const OrderPayment = () => {
+const OrderPayment = ({ user }) => {
+    const { procOrder, setProcOrder } = useContext(ProcessingOrder);
+
     let history = useHistory();
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        history.push('success');
+        placeOrder(procOrder, user.idToken)
+            .then(() => {
+                setProcOrder('');
+
+                history.push('success');
+            })
+            .catch(err => {
+                console.log(err);
+            });
     }
 
     return (
@@ -28,7 +42,7 @@ const OrderPayment = () => {
                         <input id="cardExpiry" type="text" name="cardExpiry" placeholder="MM / YY"/>
                         <label htmlFor="phone">Card CVC</label>
                         <input id="cardCvc" type="text" name="cardCvc" placeholder="CVC"/>
-                        <button className="continue-btn">Pay</button>
+                        <button className="continue-btn" onClick={handleSubmit}>Pay</button>
                     </form>
                 </div>
             </section>
@@ -36,4 +50,8 @@ const OrderPayment = () => {
     );
 }
 
-export default OrderPayment;
+const mapStateToProps = (state) => ({
+    user: state.user.user,
+});
+
+export default connect(mapStateToProps, null)(OrderPayment);
