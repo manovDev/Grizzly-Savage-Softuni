@@ -1,19 +1,24 @@
 import { connect } from 'react-redux';
 
 import { useHistory } from 'react-router-dom';
-// import { placeOrder } from '../../../services/orderService';
 
 import './OrderConfirmSummary.scss';
 
-const OrderConfirmSummary = ({ user, cart }) => {
+const OrderConfirmSummary = ({ user, cart, procOrder, setProcOrder }) => {
 
     let history = useHistory();
 
     const handleProceedToPayment = () => {
-        history.push('payment');
-        // if(user) {
-        //     placeOrder(cart, user.idToken);
-        // }
+        if(user) {
+            setProcOrder(curr => {
+                return {
+                    ...curr,
+                    shippingCost: 0,
+                    tax: (procOrder.totalPrice * 0.05)
+                }
+            });
+            history.push('payment');
+        }
     }
 
     return (
@@ -23,7 +28,7 @@ const OrderConfirmSummary = ({ user, cart }) => {
             <div className="order-summary-info">
                 <div className="order-summary-info-item">
                     <span className="info-item-title">Subtotal:</span>
-                    <span className="info-item-info">${cart.totalPrice.toFixed(2)}</span>
+                    <span className="info-item-info">${procOrder.totalPrice.toFixed(2)}</span>
                 </div>
 
                 <div className="order-summary-info-item">
@@ -33,14 +38,14 @@ const OrderConfirmSummary = ({ user, cart }) => {
 
                 <div className="order-summary-info-item">
                     <span className="info-item-title">Tax:</span>
-                    <span className="info-item-info">$36.24</span>
+                    <span className="info-item-info">{`$${(procOrder.totalPrice * 0.05).toFixed(2)}`}</span>
                 </div>
             </div>
 
             <div className="order-summary-info">
                 <div className="order-summary-info-item">
                     <span className="info-item-title">Total:</span>
-                    <span className="info-item-info">${cart.totalPrice.toFixed(2)}</span>
+                    <span className="info-item-info">{`$${(cart.totalPrice + (procOrder.totalPrice * 0.05)).toFixed(2)}`}</span>
                 </div>
             </div>
 
