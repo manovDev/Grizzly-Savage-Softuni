@@ -13,6 +13,7 @@ import OrderShipping from './components/OrderShipping';
 import OrderConfirm from './components/OrderConfirm';
 import OrderPayment from './components/OrderPayment';
 import OrderSuccess from './components/OrderSuccess';
+import UserOrders from './components/UserOrders';
 import './App.css';
 
 function App({ verifyAuth }) {
@@ -32,6 +33,8 @@ function App({ verifyAuth }) {
                     
                     <Route path="/sign-up" component={SignUp} />
 
+                    <Route exact path="/orders" component={UserOrders} />
+
                     <ProcessingOrder.Provider value={{ procOrder, setProcOrder }}>
                         <Route path="/cart" component={CartPage} />
 
@@ -45,6 +48,7 @@ function App({ verifyAuth }) {
 
                         <Route path="/order/success" component={OrderSuccess} />
                     </ProcessingOrder.Provider>
+
                 </Switch> 
             </Router>
         </div>
