@@ -44,7 +44,18 @@ const getAll = async () => {
     }
 }
 
+const getOne = async (_id) => {
+    try {
+        const order = await Order.findById(_id);
+    
+        return await order;
+    } catch (error) {
+        throw error;
+    }
+}
+
 module.exports = {
     placeOrder,
     getAll,
+    getOne,
 }
