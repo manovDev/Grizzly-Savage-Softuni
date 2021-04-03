@@ -10,7 +10,7 @@ function useFetch(url, requestInfo) {
                 setData([data]);
             })
             .catch(e => console.error(e));
-    }, [url, requestInfo]);
+    }, [url]);
 
     return data;
 }
