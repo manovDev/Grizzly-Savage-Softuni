@@ -24,4 +24,14 @@ router.post('/place-order', verifyIdToken, async (req, res) => {
     }
 });
 
+router.get('/:orderId', async (req, res) => {
+    try {
+        const orderRecord = await orderService.getOne(req.params.orderId);
+    
+        return res.status(200).json(orderRecord);
+    } catch (error) {
+        return res.status(400).json({ error });
+    }
+});
+
 module.exports = router;
