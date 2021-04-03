@@ -1,7 +1,8 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { verifyAuth } from './actions/userActions';
+import { ProcessingOrder } from './contexts/ProcessingOrder';
 
 import Main from './components/Main';
 import SignIn from './components/SignIn';
@@ -19,6 +20,8 @@ function App({ verifyAuth }) {
         verifyAuth();
     }, [verifyAuth]);
     
+    const [procOrder, setProcOrder] = useState("");
+
     return (
         <div className="App">
             <Router>
@@ -29,18 +32,20 @@ function App({ verifyAuth }) {
                     
                     <Route path="/sign-up" component={SignUp} />
 
-                    <Route path="/cart" component={CartPage} />
+                    <ProcessingOrder.Provider value={{ procOrder, setProcOrder }}>
+                        <Route path="/cart" component={CartPage} />
 
-                    <Route path="/product/:productId" component={ProductDetails} />
+                        <Route path="/product/:productId" component={ProductDetails} />
 
-                    <Route path="/order/shipping" component={OrderShipping} />
-                    
-                    <Route path="/order/confirm" component={OrderConfirm} />
+                        <Route path="/order/shipping" component={OrderShipping} />
+                        
+                        <Route path="/order/confirm" component={OrderConfirm} />
 
-                    <Route path="/order/payment" component={OrderPayment} />
+                        <Route path="/order/payment" component={OrderPayment} />
 
-                    <Route path="/order/success" component={OrderSuccess} />
-                </Switch>
+                        <Route path="/order/success" component={OrderSuccess} />
+                    </ProcessingOrder.Provider>
+                </Switch> 
             </Router>
         </div>
     );
