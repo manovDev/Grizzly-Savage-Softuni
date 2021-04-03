@@ -14,6 +14,7 @@ import OrderConfirm from './components/OrderConfirm';
 import OrderPayment from './components/OrderPayment';
 import OrderSuccess from './components/OrderSuccess';
 import UserOrders from './components/UserOrders';
+import OrderDetails from './components/OrderDetails';
 import './App.css';
 
 function App({ verifyAuth }) {
@@ -34,6 +35,7 @@ function App({ verifyAuth }) {
                     <Route path="/sign-up" component={SignUp} />
 
                     <Route exact path="/orders" component={UserOrders} />
+                    <Route path="/orders/:orderId" component={OrderDetails} />
 
                     <ProcessingOrder.Provider value={{ procOrder, setProcOrder }}>
                         <Route path="/cart" component={CartPage} />
