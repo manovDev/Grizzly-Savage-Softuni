@@ -1,9 +1,13 @@
+import { Link } from 'react-router-dom';
+
 import { AiFillEye } from 'react-icons/ai';
 import './ViewButton.scss';
 
-const ViewButton = () => {
+const ViewButton = ({ orderId }) => {
     return (
-        <button className="view-button"><AiFillEye /></button>
+        <Link to={`/orders/${orderId}`}>
+            <button className="view-button"><AiFillEye /></button>
+        </Link>
     );
 }
 

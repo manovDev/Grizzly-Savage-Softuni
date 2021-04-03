@@ -42,7 +42,7 @@ const UserOrders = ({ user, orders, getAllOrders }) => {
                                             className={order.status === 'Processing' ? 'proc-status' : 'dev-status'}
                                             >{order.status}</td>
                                             <td width="10%">
-                                                <ViewButton />
+                                                <ViewButton orderId={order._id}/>
                                             </td>
                                         </tr>
                                     )
