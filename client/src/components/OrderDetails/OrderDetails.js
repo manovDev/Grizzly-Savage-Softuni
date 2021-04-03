@@ -1,6 +1,43 @@
+import { connect } from 'react-redux';
+import { useState, useEffect } from 'react';
+import { getOne as getOneOrder } from '../../services/orderService';
+import { Link } from 'react-router-dom';
+
 import MainLayout from '../layouts/MainLayout';
 import './OrderDetails.scss';
+
 const OrderDetails = ({ user }) => {
+    const orderId = window.location.pathname.split('/orders/')[1];
+
+    const [order, setOrder] = useState({
+        firstName: "",
+        lastName: "",
+        phoneNumber: "",
+        address: "",
+        city: "",
+        country: "",
+        postalCode: "",
+        shippingCost: "",
+        tax: "",
+        products: "",
+        totalPrice: "",
+        qtty: "",
+        status: ""
+    });
+
+    useEffect(() => {
+        if(user) {
+            getOneOrder(orderId, user.idToken)
+                .then(res => res.json())
+                .then(data => {
+                    setOrder(data);
+                })
+                .catch(err => {
+                    console.log(err);
+                });
+        }
+    }, [orderId]);
+
     return (
         <MainLayout>
             <section className="order-details-wrapper">
@@ -56,5 +93,9 @@ const OrderDetails = ({ user }) => {
         </ MainLayout>
     );
 }
+
+const mapStateToProps = (state) => ({
+    user: state.user.user
+});
 
 export default connect(mapStateToProps, null)(OrderDetails);
