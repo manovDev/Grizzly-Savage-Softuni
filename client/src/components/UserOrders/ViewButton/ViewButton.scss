@@ -1,2 +1,19 @@
 .view-button {
+    border: none;
+    outline: none;
+    background-color: #0179FB;
+    border-radius: 5px;
+    width: 50px;
+    height: 50px;
+    opacity: 1;
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+        opacity: 0.5;
+    }
+
+    svg {
+        font-size: 28px;
+        fill: #ffffff;
+    }
 }
