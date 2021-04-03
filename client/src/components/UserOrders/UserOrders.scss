@@ -1,2 +1,49 @@
 .user-orders-wrapper {
+    width: 100%;
+    max-width: 1440px;
+    margin-top: 200px;
+    display: flex;
+    flex-flow: wrap column;
+    justify-content: space-around;
+    padding-left: 90px;
+
+    .user-orders-title {
+        width: 100%;
+        text-align: left;
+        margin-bottom: 50px;
+    }
+
+    .orders-list {
+
+        tr {
+            
+            th,
+            td {
+                border: 1px solid #F0F0F0;
+
+            }
+
+            th {
+                color: #251607;
+                height: 50px;
+                padding-left: 20px;
+            }
+
+            td {
+                font-weight: 500;
+                background-color: #E9E9E9;
+                color: #04335e;
+                height: 100px;
+                padding-left: 20px;
+            }
+
+            .proc-status {
+                color: #D4333B;
+            }
+
+            .dev-status {
+                color: green;
+            }
+        }
+    }
 }
