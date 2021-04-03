@@ -34,6 +34,17 @@ const placeOrder = async ({
     }
 }
 
+const getAll = async () => {
+    try {
+        const allOrders = await Order.find();
+    
+        return await allOrders;
+    } catch (error) {
+        throw error;
+    }
+}
+
 module.exports = {
     placeOrder,
+    getAll,
 }
