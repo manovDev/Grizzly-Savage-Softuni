@@ -10,7 +10,7 @@ const OrderSchema = new mongoose.Schema({
         required: true,
     },
     phoneNumber: {
-        type: Number,
+        type: String,
         required: true,
     },
     address: {
@@ -26,7 +26,7 @@ const OrderSchema = new mongoose.Schema({
         required: true,
     },
     postalCode: {
-        type: Number,
+        type: String,
         required: true,
     },
     shippingCost: {
