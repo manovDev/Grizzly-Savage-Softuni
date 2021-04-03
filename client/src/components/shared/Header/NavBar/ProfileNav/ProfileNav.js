@@ -33,7 +33,7 @@ const ProfileNav = ({ user, signOut }) => {
                                 <Link to="/profile">Profile</Link>
                             </li>
                             <li>
-                                <Link to="/profile">Orders</Link>
+                                <Link to="/orders">Orders</Link>
                             </li>
                             <li>
                                 <Link className="logout" to="/sign-in" onClick={handleSignOut}>Logout</Link>
