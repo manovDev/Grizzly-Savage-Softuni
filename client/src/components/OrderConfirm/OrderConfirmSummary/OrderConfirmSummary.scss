@@ -1,10 +1,10 @@
-.order-summary {
+.order-confirm-summary-wrapper {
     display: flex;
     flex-flow: wrap column;
     justify-content: space-around;
     align-items: center;
     width: 250px;
-    height: 250px;
+    height: 350px;
     margin-top: 46px;
     box-shadow: 0px 0px 5px 0 rgba(0, 0, 0, 0.15);
     border-radius: 5px;
@@ -28,15 +28,13 @@
             align-content: center;
             margin: 10px 0;
 
-            .subtotal-title,
-            .est-subtotal-title {
+            .info-item-title {
                 font-size: 14px;
                 color: #251607;
                 font-weight: 500;
             }
 
-            .subtotal-info,
-            .est-subtotal-info {
+            .info-item-info {
                 font-size: 14px;
                 font-weight: 900;
                 color: #04335e;
@@ -65,15 +63,6 @@
             &:hover {
                 opacity: 0.5;
             }
-        }
-
-        .must-login-msg {
-            position: absolute;
-            width: 100%;
-            top: 50px;
-            right: 0;
-            color: #D4333B;
-            font-size: 14px;
         }
     }
     

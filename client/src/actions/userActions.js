@@ -43,8 +43,11 @@ export const verifyAuth = () => (dispatch) => {
             const idToken = user.za;
             const response = await verifyUser(uid, idToken);
             const userData = await response.json();
-            
-            dispatch(signInSuccess({user: userData}));
+
+            if(userData._id) {
+                userData.idToken = idToken;
+                dispatch(signInSuccess({user: userData}));
+            }
         } else {
             dispatch(verify());
         }

@@ -1,13 +1,20 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { verifyAuth } from './actions/userActions';
+import { ProcessingOrder } from './contexts/ProcessingOrder';
 
 import Main from './components/Main';
 import SignIn from './components/SignIn';
 import SignUp from './components/SignUp';
 import CartPage from './components/CartPage';
 import ProductDetails from './components/ProductDetails';
+import OrderShipping from './components/OrderShipping';
+import OrderConfirm from './components/OrderConfirm';
+import OrderPayment from './components/OrderPayment';
+import OrderSuccess from './components/OrderSuccess';
+import UserOrders from './components/UserOrders';
+import OrderDetails from './components/OrderDetails';
 import './App.css';
 
 function App({ verifyAuth }) {
@@ -15,6 +22,8 @@ function App({ verifyAuth }) {
         verifyAuth();
     }, [verifyAuth]);
     
+    const [procOrder, setProcOrder] = useState("");
+
     return (
         <div className="App">
             <Router>
@@ -25,10 +34,24 @@ function App({ verifyAuth }) {
                     
                     <Route path="/sign-up" component={SignUp} />
 
-                    <Route path="/cart" component={CartPage} />
+                    <Route exact path="/orders" component={UserOrders} />
+                    <Route path="/orders/:orderId" component={OrderDetails} />
 
-                    <Route path="/product/:productId" component={ProductDetails} />
-                </Switch>
+                    <ProcessingOrder.Provider value={{ procOrder, setProcOrder }}>
+                        <Route path="/cart" component={CartPage} />
+
+                        <Route path="/product/:productId" component={ProductDetails} />
+
+                        <Route path="/order/shipping" component={OrderShipping} />
+                        
+                        <Route path="/order/confirm" component={OrderConfirm} />
+
+                        <Route path="/order/payment" component={OrderPayment} />
+
+                        <Route path="/order/success" component={OrderSuccess} />
+                    </ProcessingOrder.Provider>
+
+                </Switch> 
             </Router>
         </div>
     );

@@ -1,0 +1,23 @@
+.order-steps-wrapper {
+    width: 600px;
+    display: flex;
+    justify-content: center;
+    
+    .order-step {
+        color: #868686;
+        font-weight: 500;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-right: 20px;
+        background-color: #EAEAEA;
+        clip-path: polygon(75% 0%, 90% 51%, 75% 100%, 0% 100%, 10% 50%, 0% 0%);
+        width: 180px;
+        height: 40px;
+    }
+
+    .active-step {
+        color: white;
+        background-color: orange;
+    }
+}

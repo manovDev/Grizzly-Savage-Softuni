@@ -1,0 +1,75 @@
+.order-payment-wrapper {
+    width: 100%;
+    max-width: 1440px;
+    margin-top: 200px;
+    display: flex;
+    justify-content: center;
+    flex-flow: wrap column;
+    align-items: center;
+    
+    .shipping-form {
+        color: #251607;
+        display: flex;
+        flex-flow: wrap column;
+        padding: 30px;
+        margin-top: 50px;
+        box-shadow: 0px 0px 30px 0 rgba(0, 0, 0, 0.15);
+
+        h1 {
+            font-size: 28px;
+            text-align: center;
+        }
+
+        form {
+            width: 300px;
+            display: flex;
+            flex-flow: wrap column;
+
+            label {
+                font-weight: 500;
+                margin-top: 20px;
+            }
+
+            input {
+                border: none;
+                outline: none;
+                border-radius: 3px;
+                box-shadow: 0px 0px 2px 0px grey;
+                background-color: #ffffff;
+                padding: 3px 10px 3px 10px;
+                
+            }
+
+            select {
+                cursor: pointer;
+                padding: 3px 10px 3px 10px;
+                width: 100%;
+                max-width: 100%;
+                box-sizing: border-box;
+                border: none;
+                outline: none;
+                box-shadow: 0px 0px 2px 0px grey;
+                border-radius: 3px;
+                background-color: #ffffff;
+            }
+
+            .continue-btn {
+                border: none;
+                outline: none;
+                background-color: orange;
+                width: 100%;
+                height: 50px;
+                color: white;
+                font-weight: 500;
+                border-radius: 5px;
+                transition: all 0.2s ease-in-out;
+                opacity: 1;
+                margin-top: 20px;
+        
+                &:hover {
+                    opacity: 0.5;
+                }
+            }
+        }
+    }
+}
