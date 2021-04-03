@@ -1,8 +1,18 @@
+import { connect } from 'react-redux';
+import { useEffect } from 'react';
+import { getAll as getAllOrders } from '../../actions/orderActions';
+
 import ViewButton from './ViewButton';
 import MainLayout from '../layouts/MainLayout';
 import './UserOrders.scss';
 
 const UserOrders = ({ user, orders, getAllOrders }) => {
+    useEffect(() => {
+        if(user) {
+            getAllOrders(user.idToken);
+        }
+        
+    }, [getAllOrders]);
 
     return (
         <MainLayout>
@@ -55,3 +65,13 @@ const UserOrders = ({ user, orders, getAllOrders }) => {
     );
 }
 
+const mapStateToProps = (state) => ({
+    user: state.user.user,
+    orders: state.orders.orders
+});
+
+const mapDispatchToProps = {
+    getAllOrders,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserOrders);
