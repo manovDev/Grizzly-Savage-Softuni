@@ -1,12 +1,18 @@
+import { connect } from 'react-redux';
+
 import useFetch from '../../hooks/useFetch';
 import useForm from '../../hooks/useForm';
 import { useHistory } from 'react-router-dom';
+import { useContext } from 'react';
+import { ProcessingOrder } from '../../contexts/ProcessingOrder';
 
 import OrderSteps from '../shared/OrderSteps';
 import MainLayout from '../layouts/MainLayout';
 import './OrderShipping.scss';
 
-const OrderShipping = () => {
+const OrderShipping = ({ user }) => {
+    const { procOrder, setProcOrder } = useContext(ProcessingOrder);
+
     let history = useHistory();
 
     const [countriesState] = useFetch(
@@ -20,18 +26,28 @@ const OrderShipping = () => {
         });
 
     const [stateForm, setStateForm] = useForm({
+        firstName: '',
+        lastName: '',
         address: '',
         city: '',
-        phone: '',
+        phoneNumber: '',
         postalCode: '',
         country: '',
     });
     
     const submitForm = async (e) => {
         e.preventDefault();
-        const { address, city, phone, postalCode, country } = stateForm;
+        const { address, city, phoneNumber, postalCode, country } = stateForm;
 
-        if (address && city && phone && postalCode && country) {
+        if (address && city && phoneNumber && postalCode && country) {
+            setProcOrder(curr => {
+                return {
+                    ...curr,
+                    ...stateForm,
+                    firstName: user.firstName,
+                    lastName: user.lastName
+                }
+            });
             history.push('confirm');
         }
     }
@@ -40,7 +56,7 @@ const OrderShipping = () => {
         <MainLayout>
             <section className="order-shipping-wrapper">
                 <OrderSteps steps={["shipping"]}/>
-
+                
                 <div className="shipping-form">
                     <h1>Shipping Info</h1>
                     <form onSubmit={submitForm}>
@@ -48,8 +64,8 @@ const OrderShipping = () => {
                         <input id="address" type="text" name="address" onChange={setStateForm} placeholder="1234 Wolf Street"/>
                         <label htmlFor="city">City</label>
                         <input id="city" type="text" name="city" onChange={setStateForm} placeholder="New York"/>
-                        <label htmlFor="phone">Phone</label>
-                        <input id="phone" type="text" name="phone" onChange={setStateForm} placeholder="088 333 4444"/>
+                        <label htmlFor="phoneNumber">Phone</label>
+                        <input id="phoneNumber" type="text" name="phoneNumber" onChange={setStateForm} placeholder="088 333 4444"/>
                         <label htmlFor="postalCode">Postal Code</label>
                         <input id="postalCode" type="text" name="postalCode" onChange={setStateForm} placeholder="12345"/>
                         <label htmlFor="country">Country</label>
@@ -84,4 +100,8 @@ const OrderShipping = () => {
     );
 }
 
-export default OrderShipping;
+const mapStateToProps = (state) => ({
+    user: state.user.user,
+});
+
+export default connect(mapStateToProps, null)(OrderShipping);
