@@ -1,11 +1,10 @@
 import { connect } from 'react-redux';
 
 import { useHistory } from 'react-router-dom';
-// import { placeOrder } from '../../../services/orderService';
 
 import './OrderSummary.scss';
 
-const OrderSummary = ({ user, cart }) => {
+const OrderSummary = ({ user, cart, setProcOrder }) => {
 
     let history = useHistory();
 
@@ -14,16 +13,15 @@ const OrderSummary = ({ user, cart }) => {
     }
 
     const handleCheckOut = () => {
-        history.push('order/shipping');
-        // if(user) {
-        //     placeOrder(cart, user.idToken);
-        // }
+        if(user) {
+            setProcOrder(cart);
+            history.push('order/shipping');
+        }
     }
 
     return (
         <div className="order-summary">
             <h3 className="order-summary-title">Order Summary</h3>
-
             <div className="order-summary-info">
                 <div className="order-summary-info-item">
                     <span className="subtotal-title">Subtotal:</span>
