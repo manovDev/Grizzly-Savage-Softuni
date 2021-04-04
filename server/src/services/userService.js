@@ -1,7 +1,7 @@
 const admin = require('../config/firebase');
 const User = require('../models/User');
 
-const signUp = ({ firstName, lastName, email, password }) => {
+const signUp = ({ firstName, lastName, email, password, profileImage }) => {
 
     return admin.auth().createUser({
         email,
@@ -9,13 +9,13 @@ const signUp = ({ firstName, lastName, email, password }) => {
     })
         .then(async (userRecord) => {
             const uid = userRecord.uid
-            const user = new User({ uid, firstName, lastName, email });
+            const user = new User({ uid, firstName, lastName, email, profileImage });
             
             return await user.save();
             
         })
         .catch((err) => {
-            return { error: err.message };
+            return { error: err };
         });
 }
 

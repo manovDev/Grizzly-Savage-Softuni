@@ -2,18 +2,25 @@ import { useState } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { signUp } from '../../actions/userActions';
+import { storage } from '../../firebase';
+
 
 import MainLayout from '../layouts/MainLayout';
 import './SignUp.scss';
 
 const SignUp = ({ signUp }) => {
-    
     const history = useHistory();
+    
     const [formData, setFormData] = useState({
         firstName: null,
         lastName: null,
         email: null,
         password: null,
+        profileImage: null,
+    });
+
+    const [profileImageFile, setProfileImageFile] = useState({
+        profileImage: null,
     });
 
     const handleChange = (e) => {
@@ -24,12 +31,26 @@ const SignUp = ({ signUp }) => {
         }));
     }
 
+    const handleImgUpload = (e) => {
+        const file = e.target.files[0];
+
+        setFormData((currentErrState) => ({
+            ...currentErrState,
+            [e.target.name]: file.name
+        }));
+
+        setProfileImageFile((currentErrState) => ({
+            ...currentErrState,
+            [e.target.name]: file
+        }));
+    }
+
     const submitForm = async (e) => {
         e.preventDefault();
 
-        if (formData.firstName && formData.lastName && formData.email && formData.password) {
+        if (formData.firstName && formData.lastName && formData.email && formData.password && formData.profileImage) {
                 try {
-                    await signUp(formData);
+                    await signUp(formData, profileImageFile.profileImage);
 
                     history.push('/sign-in');   
                 } catch (res) {
@@ -55,6 +76,12 @@ const SignUp = ({ signUp }) => {
 
                         <label htmlFor="password">Password</label>
                         <input id="password" name="password" onChange={handleChange} type="password"/>
+
+                        <label htmlFor="repPassword">Re-Password</label>
+                        <input id="repPassword" name="repPassword" type="password"/>
+
+                        <label htmlFor="profileImage">Profile Image</label>
+                        <input id="profileImage" type="file" name="profileImage" onChange={handleImgUpload}/>
 
                         <button>Sign Up</button>
                     </form>
