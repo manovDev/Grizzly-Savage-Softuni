@@ -72,11 +72,16 @@ export const signIn = (email, password) => async (dispatch) => {
             })
             .then(res => res.json())
             .then(user => {
-                dispatch(signInSuccess({ user }))
                 const ref = storage.ref(user._id + "/");
                 var storageRef = ref.child(user.profileImage);
 
                 storageRef.getDownloadURL()
+                    .then(profileImgUrl => {
+                        user.profileImage = profileImgUrl;
+
+                        return dispatch(signInSuccess({ user }));
+                    })
+                    .catch(console.log)
             })
             .catch(err => {
                 return err;
