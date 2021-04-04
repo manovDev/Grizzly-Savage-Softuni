@@ -28,32 +28,32 @@ function App({ verifyAuth }) {
     return (
         <div className="App">
             <Router>
-                <Switch>
-                    <Route exact path="/" component={Main} />
+                <ProcessingOrder.Provider value={{ procOrder, setProcOrder }}>
+                    <Switch>
+                        <Route exact path="/" component={Main} />
 
-                    <Route path="/sign-in" component={SignIn} />
-                    
-                    <Route path="/sign-up" component={SignUp} />
-
-                    <LoggedRoute exact path="/orders" component={UserOrders} />
-
-                    <LoggedRoute path="/orders/:orderId" component={OrderDetails} />
+                        <Route path="/sign-in" component={SignIn} />
                         
-                    <ProcessingOrder.Provider value={{ procOrder, setProcOrder }}>
-                        <Route path="/cart" component={CartPage} />
+                        <Route path="/sign-up" component={SignUp} />
+                            
+                            <Route path="/cart" component={CartPage} />
 
-                        <Route path="/product/:productId" component={ProductDetails} />
+                            <Route path="/product/:productId" component={ProductDetails} />
 
-                        <LoggedRoute path="/order/shipping" component={OrderShipping} />
-                        
-                        <LoggedRoute path="/order/confirm" component={OrderConfirm} />
+                            <LoggedRoute path="/order/shipping" component={OrderShipping} />
+                            
+                            <LoggedRoute path="/order/confirm" component={OrderConfirm} />
 
-                        <LoggedRoute path="/order/payment" component={OrderPayment} />
+                            <LoggedRoute path="/order/payment" component={OrderPayment} />
 
-                        <LoggedRoute path="/order/success" component={OrderSuccess} />
-                    </ProcessingOrder.Provider>
+                            <LoggedRoute path="/order/success" component={OrderSuccess} />
 
-                </Switch> 
+                            <LoggedRoute exact path="/orders" component={UserOrders} />
+
+                            <LoggedRoute path="/orders/:orderId" component={OrderDetails} /> */}
+
+                    </Switch> 
+                </ProcessingOrder.Provider>
             </Router>
         </div>
     );
