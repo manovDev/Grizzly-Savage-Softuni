@@ -44,7 +44,7 @@ function App({ verifyAuth }) {
 
                         <Route path="/product/:productId" component={ProductDetails} />
 
-                        <Route path="/order/shipping" component={OrderShipping} />
+                        <LoggedRoute path="/order/shipping" component={OrderShipping} />
                         
                         <Route path="/order/confirm" component={OrderConfirm} />
 
