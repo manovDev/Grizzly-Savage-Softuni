@@ -28,6 +28,18 @@
             label {
                 font-weight: 500;
                 margin-top: 20px;
+
+                &::after {
+                    content: attr(data-err);
+                    height: 20px;
+                    display: inline-block;
+                    color: #D4333B;
+                    position: relative;
+                    z-index: 2;
+                    font-size: 10px;
+                    top: 0px;
+                    left: 80px;
+                }
             }
 
             input {
@@ -38,6 +50,11 @@
                 background-color: #ffffff;
                 padding: 3px 10px 3px 10px;
                 
+            }
+
+            .dis-btn {
+                background-color: #E8E8E8;
+                color: #a0a4a8;
             }
 
             button {
