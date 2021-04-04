@@ -1,3 +1,4 @@
+import { FiSearch as SearchIcon} from 'react-icons/fi';
 import './SearchProducts.scss';
 
 function SearchProducts() {
@@ -5,7 +6,7 @@ function SearchProducts() {
         <div className="search-products">
             <form>
                 <input type="text" name="search" placeholder="Search for product..."/>
-                <button type="button">Search!</button>
+                <button type="button"><SearchIcon /></button>
             </form>
         </div>
     );
