@@ -35,7 +35,7 @@ const SignIn = ({ signIn, user }) => {
         <MainLayout> 
             <div className="sign-in">
                 <div className="sign-in-content">
-                    <h1>Sign In</h1>
+                    <h1>Login</h1>
                     <form onSubmit={submitForm}>
                         <label htmlFor="email">Email</label>
                         <input id="email" name="email" type="email" placeholder="john@domain.com" onChange={setStateForm}/>
@@ -47,7 +47,7 @@ const SignIn = ({ signIn, user }) => {
                     </form>
                     <div className="new-customer">
                         New customer?
-                        <Link to="/sign-up">Sign Up</Link>
+                        <Link to="/sign-up">Register</Link>
                     </div>
                     
                 </div>
