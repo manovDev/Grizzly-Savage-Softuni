@@ -50,7 +50,7 @@ function App({ verifyAuth }) {
 
                         <LoggedRoute path="/order/payment" component={OrderPayment} />
 
-                        <Route path="/order/success" component={OrderSuccess} />
+                        <LoggedRoute path="/order/success" component={OrderSuccess} />
                     </ProcessingOrder.Provider>
 
                 </Switch> 
