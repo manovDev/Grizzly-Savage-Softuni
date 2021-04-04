@@ -1,3 +1,5 @@
+import { connect } from 'react-redux';
+
 import { Link } from 'react-router-dom';
 
 import gsLogo from './assets/grizzly-savage-logo.png';
@@ -43,6 +45,16 @@ const NavBar = ({ user }) => {
                     </li>
                 </ul>
                 
+                <div className="user-greetings">
+                    {user
+                        ? (
+                            <>
+                                <span>Hello, {user.firstName}</span>
+                            </>
+                        )
+                        : ''
+                    }
+                </div>
                 <div className="nav-additions">
                     <ProfileNav user={user} />
 
@@ -53,4 +65,8 @@ const NavBar = ({ user }) => {
     );
 }
 
-export default NavBar;
+const mapStateToProps = (state) => ({
+    user: state.user.user
+})
+
+export default connect(mapStateToProps, null)(NavBar);

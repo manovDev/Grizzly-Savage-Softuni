@@ -1,16 +1,20 @@
 .nav-wrapper {
     width: 100%;
-    position: fixed;
-    top: 0;
-    z-index: 1;
+    z-index: 2;
+    height: 150px;
+    background-color: #234465;
+    box-shadow: 0px 0px 15px 0px rgb(0, 0, 0);
 
     nav {
         display: flex;
-        justify-content: space-around;
+        justify-content: space-between;
         align-items: center;
         width: 100%;
         max-width: 1440px;
         margin: 0 auto;
+        height: 100%;
+        padding: 0 20px;
+
 
         .header-logo {
             width: 200px;
@@ -26,10 +30,11 @@
             justify-content: center;
             align-items: center;
             gap: 50px;
+            margin-right: 14%;
 
             li {
                 list-style-type: none;
-                color: #52493a;
+                color: white;
                 letter-spacing: 0em;
                 font-weight: 900;
                 font-size: 16px;
@@ -37,8 +42,9 @@
 
                 a {
                     text-decoration: none;
-                    color: #52493a;
+                    color: white;
                     transition: all 0.2s ease-in-out;
+                    letter-spacing: 1px;
 
                     &:hover {
                         color: orange;
@@ -48,6 +54,18 @@
             }
         }
 
+        .user-greetings {
+            margin-bottom: 15px;
+
+            span {
+                font-weight: 500;
+                color: white;
+                font-size: 16px;
+                line-height: 1.7;
+                letter-spacing: 1px;
+            }
+        }
+        
         .nav-additions {
             display: flex;
         }
