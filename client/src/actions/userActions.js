@@ -86,12 +86,10 @@ export const signIn = (email, password) => async (dispatch) => {
 
                         return dispatch(signInSuccess({ user }));
                     })
-                    .catch(console.log)
+                    .catch(err => {
+                        return err;
+                    })
             })
-            .catch(err => {
-                return err;
-            });
-    
 }
 
 export const signOut = () => async (dispatch) => {
