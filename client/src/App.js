@@ -35,9 +35,10 @@ function App({ verifyAuth }) {
                     
                     <Route path="/sign-up" component={SignUp} />
 
-                    <Route path="/orders/:orderId" component={OrderDetails} />
                     <LoggedRoute exact path="/orders" component={UserOrders} />
 
+                    <LoggedRoute path="/orders/:orderId" component={OrderDetails} />
+                        
                     <ProcessingOrder.Provider value={{ procOrder, setProcOrder }}>
                         <Route path="/cart" component={CartPage} />
 
