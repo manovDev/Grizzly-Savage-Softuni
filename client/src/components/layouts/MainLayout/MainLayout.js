@@ -1,5 +1,6 @@
 import SlideShow from '../../shared/SlideShow';
 import Header from '../../shared/Header';
+import Footer from '../../shared/Footer';
 import './MainLayout.scss';
 
 const MainLayout = ({ children }) => {
@@ -19,6 +20,8 @@ const MainLayout = ({ children }) => {
             <div className="main-layout-content">
                 {children}
             </div>
+
+            <Footer />
         </div>
     );
 }
