@@ -22,13 +22,13 @@ The admin users have access to the dashboard where they can create, edit and del
 ## Project Architecture - Basic Overview (important directories)
 
 ```
-	client
-	├── build
-	├── piblic
-	├── src
-	│       ├── actions
-	│       ├── components
-	│       ├── constants
+   client
+  ├── build
+  ├── piblic
+  ├── src
+  │       ├── actions
+  │       ├── components
+  │       ├── constants
   |       ├── contexts
   |       ├── hooks
   |       ├── reducers
