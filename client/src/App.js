@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { verifyAuth } from './actions/userActions';
 import { ProcessingOrder } from './contexts/ProcessingOrder';
 
+import LoggedRoute from './components/LoggedRoute';
 import Main from './components/Main';
 import SignIn from './components/SignIn';
 import SignUp from './components/SignUp';
@@ -34,8 +35,8 @@ function App({ verifyAuth }) {
                     
                     <Route path="/sign-up" component={SignUp} />
 
-                    <Route exact path="/orders" component={UserOrders} />
                     <Route path="/orders/:orderId" component={OrderDetails} />
+                    <LoggedRoute exact path="/orders" component={UserOrders} />
 
                     <ProcessingOrder.Provider value={{ procOrder, setProcOrder }}>
                         <Route path="/cart" component={CartPage} />
