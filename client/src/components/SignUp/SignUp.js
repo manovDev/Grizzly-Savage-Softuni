@@ -1,6 +1,7 @@
 import { Redirect } from 'react-router';
-import { useState } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useHistory, Link } from 'react-router-dom';
+import { validateField } from './helpers/formValidation';
 import { connect } from 'react-redux';
 import { signUp } from '../../actions/userActions';
 
@@ -16,6 +17,14 @@ const SignUp = ({ signUp, user }) => {
         email: null,
         password: null,
         profileImage: null,
+    });
+
+    const [errState, setErrValues] = useState({
+        firstNameErr: null,
+        lastNameErr: null,
+        emailErr: null,
+        passwordErr: null,
+        profileImageErr: null,
     });
 
     const [profileImageFile, setProfileImageFile] = useState({
@@ -44,6 +53,44 @@ const SignUp = ({ signUp, user }) => {
         }));
     }
 
+    const [signUpErr, setSignUpErr] = useState(false);
+
+    const existError = useCallback((currentErrState) => {
+        for (let prop in currentErrState) {
+            if(errState[prop] !== false && prop !== 'signUpErr') {
+                return true;
+            }
+        }
+
+        return false;
+    }, [errState])
+
+    useEffect(() => {
+        setSignUpErr(existError(errState));
+    }, [existError, errState]);
+
+    const clearErrState = (err) => {
+        setErrValues((currentErrState) => ({
+            ...currentErrState,
+            [err]: false
+        }));
+    }
+
+    const handleValidation = (e) => {
+        if(!e.target.value) {
+            clearErrState(e.target.name + 'Err');
+            return;
+        }
+
+        setErrValues((currentErrState) => {
+            
+            return ({
+                ...currentErrState,
+                [e.target.name + 'Err']: validateField(e.target.name, e.target.value),
+            })
+        });
+    }
+
     const submitForm = async (e) => {
         e.preventDefault();
 
@@ -67,26 +114,71 @@ const SignUp = ({ signUp, user }) => {
             <div className="sign-up">
                 <div className="sign-up-content">
                     <h1>Register</h1>
-                    <form onSubmit={submitForm}>
-                        <label htmlFor="firstName">First Name</label>
-                        <input id="firstName" name="firstName" type="text" onChange={handleChange} placeholder="John"/>
+                    <form onSubmit={signUpErr ? '' : submitForm}>
+                        <label
+                            htmlFor="firstName"
+                            data-err={!errState.firstNameErr ? '' : errState.firstNameErr}>First Name</label>
 
-                        <label htmlFor="lastName">Last Name</label>
-                        <input id="lastName" name="lastName" type="text" onChange={handleChange} placeholder="Wilson"/>
+                        <input
+                            id="firstName"
+                            name="firstName"
+                            type="text"
+                            onChange={handleChange}
+                            onBlur={handleValidation}
+                            placeholder="John"
+                        />
 
-                        <label htmlFor="email">Email</label>
-                        <input id="email" name="email" type="email" onChange={handleChange} placeholder="john@domain.com"/>
+                        <label
+                            htmlFor="lastName"
+                            data-err={!errState.lastNameErr ? '' : errState.lastNameErr}>Last Name</label>
 
-                        <label htmlFor="password">Password</label>
-                        <input id="password" name="password" onChange={handleChange} type="password"/>
+                        <input
+                            id="lastName"
+                            name="lastName"
+                            type="text"
+                            onChange={handleChange}
+                            onBlur={handleValidation}
+                            placeholder="Wilson"
+                        />
 
-                        <label htmlFor="repPassword">Repeat Password</label>
-                        <input id="repPassword" name="repPassword" type="password"/>
+                        <label
+                            htmlFor="email"
+                            data-err={!errState.emailErr ? '' : errState.emailErr}>Email</label>
+                        <input
+                            id="email"
+                            name="email"
+                            type="email"
+                            onChange={handleChange}
+                            onBlur={handleValidation}
+                            placeholder="john@domain.com"
+                        />
 
-                        <label htmlFor="profileImage">Profile Image</label>
-                        <input id="profileImage" type="file" name="profileImage" onChange={handleImgUpload}/>
+                        <label
+                            htmlFor="password"
+                            data-err={!errState.passwordErr ? '' : errState.passwordErr}>Password</label>
+                        <input
+                            id="password"
+                            name="password"
+                            onChange={handleChange}
+                            onBlur={handleValidation}
+                            type="password"
+                        />
 
-                        <button>Register</button>
+                        <label
+                            htmlFor="profileImage"
+                            data-err={!errState.profileImageErr ? '' : errState.profileImageErr}>Profile Image</label>
+                        <input
+                            id="profileImage"
+                            type="file"
+                            name="profileImage"
+                            onBlur={handleValidation}
+                            onChange={handleImgUpload}
+                        />
+
+                    {signUpErr 
+                        ? <button className="dis-btn" disabled>Register</button>
+                        : <button>Register</button>
+                    }
                     </form>
                     <div className="new-customer">
                         Already a customer?
