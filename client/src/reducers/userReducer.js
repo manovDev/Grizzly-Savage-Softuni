@@ -8,13 +8,17 @@ const initialState = {
     user: null,
 };
 
-const userReducer = (state = initialState, action) => {
+let localStorageUserState = JSON.parse(localStorage.getItem('user'));
+localStorageUserState = localStorageUserState?.email ? { ...localStorageUserState, isLoggedIn: true } : initialState;
+
+const userReducer = (state = localStorageUserState, action) => {
     switch (action.type) {
         case SIGNIN:
             return {
                 ...state,
                 user: action.payload.user,
                 userId: action.payload._id,
+                isLoggedIn: true
             };
         case VERIFY:
             return {

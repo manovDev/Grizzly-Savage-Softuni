@@ -54,6 +54,9 @@ export const verifyAuth = () => (dispatch) => {
 
             if(userData._id) {
                 userData.idToken = idToken;
+                
+                localStorage.setItem('user', JSON.stringify(user));
+
                 dispatch(signInSuccess({user: userData}));
             }
         } else {
@@ -79,6 +82,8 @@ export const signIn = (email, password) => async (dispatch) => {
                     .then(profileImgUrl => {
                         user.profileImage = profileImgUrl;
 
+                        localStorage.setItem('user', JSON.stringify(user));
+
                         return dispatch(signInSuccess({ user }));
                     })
                     .catch(console.log)
@@ -90,8 +95,10 @@ export const signIn = (email, password) => async (dispatch) => {
 }
 
 export const signOut = () => async (dispatch) => {
-    console.log('sign out');
     
     await firebase.auth().signOut();
+
+    localStorage.removeItem('user');
+
     dispatch(signOutSuccess());
 }

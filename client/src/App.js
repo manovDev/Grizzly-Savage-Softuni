@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { verifyAuth } from './actions/userActions';
 import { ProcessingOrder } from './contexts/ProcessingOrder';
 
+import LoggedRoute from './components/LoggedRoute';
 import Main from './components/Main';
 import SignIn from './components/SignIn';
 import SignUp from './components/SignUp';
@@ -34,21 +35,22 @@ function App({ verifyAuth }) {
                     
                     <Route path="/sign-up" component={SignUp} />
 
-                    <Route exact path="/orders" component={UserOrders} />
-                    <Route path="/orders/:orderId" component={OrderDetails} />
+                    <LoggedRoute exact path="/orders" component={UserOrders} />
 
+                    <LoggedRoute path="/orders/:orderId" component={OrderDetails} />
+                        
                     <ProcessingOrder.Provider value={{ procOrder, setProcOrder }}>
                         <Route path="/cart" component={CartPage} />
 
                         <Route path="/product/:productId" component={ProductDetails} />
 
-                        <Route path="/order/shipping" component={OrderShipping} />
+                        <LoggedRoute path="/order/shipping" component={OrderShipping} />
                         
-                        <Route path="/order/confirm" component={OrderConfirm} />
+                        <LoggedRoute path="/order/confirm" component={OrderConfirm} />
 
-                        <Route path="/order/payment" component={OrderPayment} />
+                        <LoggedRoute path="/order/payment" component={OrderPayment} />
 
-                        <Route path="/order/success" component={OrderSuccess} />
+                        <LoggedRoute path="/order/success" component={OrderSuccess} />
                     </ProcessingOrder.Provider>
 
                 </Switch> 

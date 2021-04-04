@@ -1,14 +1,13 @@
+import { Redirect } from 'react-router';
 import { useState } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { signUp } from '../../actions/userActions';
-import { storage } from '../../firebase';
-
 
 import MainLayout from '../layouts/MainLayout';
 import './SignUp.scss';
 
-const SignUp = ({ signUp }) => {
+const SignUp = ({ signUp, user }) => {
     const history = useHistory();
     
     const [formData, setFormData] = useState({
@@ -59,6 +58,10 @@ const SignUp = ({ signUp }) => {
         }
     }
 
+    if (user?.isLoggedIn) {
+		return <Redirect to='/' />
+	}
+
     return (
         <MainLayout> 
             <div className="sign-up">
@@ -96,8 +99,12 @@ const SignUp = ({ signUp }) => {
     );
 }
 
+const mapStateToProps = (state) => ({
+    user: state.user
+})
+
 const mapDispatchToProps = {
     signUp,
 }   
 
-export default connect(null, mapDispatchToProps)(SignUp);
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp);

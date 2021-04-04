@@ -1,3 +1,4 @@
+import { Redirect } from 'react-router';
 import useForm from '../../hooks/useForm';
 import { useHistory, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -6,7 +7,7 @@ import { signIn } from '../../actions/userActions'
 import MainLayout from '../layouts/MainLayout';
 import './SignIn.scss';
 
-const SignIn = ({ signIn }) => {
+const SignIn = ({ signIn, user }) => {
     const history = useHistory();
 
     const [stateForm, setStateForm] = useForm({ email: '', password: '' });
@@ -25,6 +26,10 @@ const SignIn = ({ signIn }) => {
             }
         }
     }
+
+    if (user?.isLoggedIn) {
+		return <Redirect to='/' />
+	}
 
     return (
         <MainLayout> 
@@ -51,8 +56,12 @@ const SignIn = ({ signIn }) => {
     );
 }
 
+const mapStateToProps = (state) => ({
+    user: state.user
+})
+
 const mapDispatchToProps = {
     signIn,
 }   
 
-export default connect(null, mapDispatchToProps)(SignIn);
+export default connect(mapStateToProps, mapDispatchToProps)(SignIn);
