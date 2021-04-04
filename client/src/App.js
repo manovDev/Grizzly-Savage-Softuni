@@ -48,7 +48,7 @@ function App({ verifyAuth }) {
                         
                         <LoggedRoute path="/order/confirm" component={OrderConfirm} />
 
-                        <Route path="/order/payment" component={OrderPayment} />
+                        <LoggedRoute path="/order/payment" component={OrderPayment} />
 
                         <Route path="/order/success" component={OrderSuccess} />
                     </ProcessingOrder.Provider>
