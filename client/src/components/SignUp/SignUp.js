@@ -66,7 +66,7 @@ const SignUp = ({ signUp, user }) => {
         <MainLayout> 
             <div className="sign-up">
                 <div className="sign-up-content">
-                    <h1>Sign Up</h1>
+                    <h1>Register</h1>
                     <form onSubmit={submitForm}>
                         <label htmlFor="firstName">First Name</label>
                         <input id="firstName" name="firstName" type="text" onChange={handleChange} placeholder="John"/>
@@ -80,17 +80,17 @@ const SignUp = ({ signUp, user }) => {
                         <label htmlFor="password">Password</label>
                         <input id="password" name="password" onChange={handleChange} type="password"/>
 
-                        <label htmlFor="repPassword">Re-Password</label>
+                        <label htmlFor="repPassword">Repeat Password</label>
                         <input id="repPassword" name="repPassword" type="password"/>
 
                         <label htmlFor="profileImage">Profile Image</label>
                         <input id="profileImage" type="file" name="profileImage" onChange={handleImgUpload}/>
 
-                        <button>Sign Up</button>
+                        <button>Register</button>
                     </form>
                     <div className="new-customer">
                         Already a customer?
-                        <Link to="/sign-in">Sign In</Link>
+                        <Link to="/sign-in">Login</Link>
                     </div>
                     
                 </div>
