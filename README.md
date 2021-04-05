@@ -1,7 +1,7 @@
 
 # Grizzly-Savage-Softuni
 
-### Deployed app url - [here](https://grizzly-savage.web.app/)
+### Deployed app version - [here](https://grizzly-savage.web.app/)
 
 ## Table of Contents
 - Description
