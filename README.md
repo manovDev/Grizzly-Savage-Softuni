@@ -63,7 +63,7 @@ You would require the following tools to run the project:
 
 Steps and commands for running the app:
 
-* Example steps:
+* Steps:
   ```
   Open two terminals
   
