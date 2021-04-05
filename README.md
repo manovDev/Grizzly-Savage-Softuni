@@ -55,7 +55,7 @@ The admin users have access to the dashboard where they can create, edit and del
 
 ### Tools Required
 
-All tools required go here. You would require the following tools to develop and run the project:
+You would require the following tools to run the project:
 
 * A text editor or an IDE (like Visual Studio Code)
 
