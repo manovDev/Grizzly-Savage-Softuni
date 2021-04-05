@@ -4,11 +4,11 @@
 ### Deployed app url - [here](https://grizzly-savage.web.app/)
 
 ## Table of Contents
-- [Description](#description)
-- [Project Architecture - Basic Overview (important directories)](#Project Architecture - Basic Overview (important directories))
-- [Tools Required](#tools-required)
-- [Running the App](#running-the-app)
-- [Authors](#authors)
+- Description
+- Project Architecture - Basic Overview (important directories)
+- Tools Required
+- Running the App
+- Authors
 
 ## Description
 
