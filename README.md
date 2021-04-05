@@ -30,7 +30,7 @@ The admin users have access to the dashboard where they can create, edit and del
 ```
   client
   ├── build
-  ├── piblic
+  ├── public
   ├── src
   │       ├── actions
   │       ├── components
