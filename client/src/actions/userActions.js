@@ -71,11 +71,16 @@ export const signIn = (email, password) => async (dispatch) => {
                 const uid = firebaseRes.user.uid;
                 const idToken = firebaseRes.user.za;
 
-                return singInService(uid, idToken);
+                const userData = singInService(uid, idToken);
+
+                if(userData._id) {
+                    userData.idToken = idToken;
+
+                    return userData;
+                }
             })
             .then(res => res.json())
             .then(user => {
-                verifyAuth();
 
                 const ref = storage.ref(user._id + "/");
                 var storageRef = ref.child(user.profileImage);
