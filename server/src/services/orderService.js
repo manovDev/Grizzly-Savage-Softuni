@@ -1,6 +1,8 @@
 const Order = require('../models/Order');
+const User = require('../models/User');
 
 const placeOrder = async ({
+    userId,
     firstName,
     lastName,
     phoneNumber,
@@ -14,6 +16,7 @@ const placeOrder = async ({
     totalPrice,
     qtty }) => {
     try {
+        
         const newOrder = new Order({
             firstName,
             lastName,
@@ -27,7 +30,13 @@ const placeOrder = async ({
             products,
             totalPrice,
             qtty });
-    
+        
+        await User.findByIdAndUpdate(userId, {
+            $addToSet: {
+                orders: newOrder._id
+            }
+        });
+
         return await newOrder.save();
     } catch (error) {
         throw error;

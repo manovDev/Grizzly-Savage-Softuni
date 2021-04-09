@@ -1,32 +1,23 @@
 import { connect } from 'react-redux';
 import { useEffect, useState } from 'react';
-import { getAll as getAllOrders } from '../../actions/orderActions';
+
 import { Spinner } from 'react-bootstrap'
 import ViewButton from './ViewButton';
 import MainLayout from '../layouts/MainLayout';
 import './UserOrders.scss';
 
-const UserOrders = ({ user, orders, getAllOrders }) => {
+const UserOrders = ({ user }) => {
     const [isLoading, setIsLoading] = useState(false);
 
-    useEffect(async () => {
+    useEffect(() => {
         setIsLoading(true);
 
         if(user) {
-            getAllOrders(user.idToken)
-                .then(() => {
-
-                    setIsLoading(false);
-                })
-                .catch((err) => {
-                    setIsLoading(false);
-                    
-                    console.log(err);
-                });
-
+            
+            setIsLoading(false);
         }
         
-    }, [user, getAllOrders]);
+    }, [ user ]);
 
     return (
         <MainLayout>
@@ -45,7 +36,7 @@ const UserOrders = ({ user, orders, getAllOrders }) => {
                     </thead>
                     <tbody>
                         {
-                        isLoading
+                        isLoading || !user
                             ?   
                                 <tr>
                                     <td>
@@ -55,7 +46,7 @@ const UserOrders = ({ user, orders, getAllOrders }) => {
                                     </td>
                                     
                                 </tr>
-                            : orders
+                            : user.orders
                                 .map((order) =>
                                     (
                                         <tr key={order._id}>
@@ -91,11 +82,6 @@ const UserOrders = ({ user, orders, getAllOrders }) => {
 
 const mapStateToProps = (state) => ({
     user: state.user.user,
-    orders: state.orders.orders
 });
 
-const mapDispatchToProps = {
-    getAllOrders,
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(UserOrders);
+export default connect(mapStateToProps, null)(UserOrders);

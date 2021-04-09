@@ -25,17 +25,20 @@ const OrderPayment = ({ user }) => {
 
         setIsLoading(true);
 
-        placeOrder(procOrder, user.idToken)
-            .then(() => {
-                setIsLoading(false);
+        if(user) {
 
-                setProcOrder('');
-
-                history.push('order/success');
-            })
-            .catch(err => {
-                console.log(err);
-            });
+            placeOrder(procOrder, user.idToken)
+                .then(() => {
+                    setIsLoading(false);
+    
+                    setProcOrder('');
+    
+                    history.push('order/success');
+                })
+                .catch(err => {
+                    console.log(err);
+                });
+        }
     }
 
     return (
