@@ -5,7 +5,7 @@ import useForm from '../../hooks/useForm';
 import { useHistory } from 'react-router-dom';
 import { useContext } from 'react';
 import { ProcessingOrder } from '../../contexts/ProcessingOrder';
-
+import { Redirect } from 'react-router';
 import OrderSteps from '../shared/OrderSteps';
 import MainLayout from '../layouts/MainLayout';
 import './OrderShipping.scss';
@@ -15,6 +15,8 @@ const OrderShipping = ({ user }) => {
 
     let history = useHistory();
 
+
+    
     const [countriesState] = useFetch(
         'https://ajayakv-rest-countries-v1.p.rapidapi.com/rest/v1/all',
         {
@@ -50,6 +52,10 @@ const OrderShipping = ({ user }) => {
             });
             history.push('confirm');
         }
+    }
+
+    if(procOrder === '') {
+        return <Redirect to='/' />
     }
 
     return (
