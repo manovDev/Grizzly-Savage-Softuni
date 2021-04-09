@@ -18,7 +18,7 @@ const OrderConfirmInfo = ({ user, cart }) => {
                     <span>Name: </span> {`${user.firstName} ${user.lastName}`}
                 </p>
                 <p>
-                    <span>Phone: </span> {procOrder.phone}
+                    <span>Phone: </span> {procOrder.phoneNumber}
                 </p>
                 <p>
                     <span>Address: </span> {`${procOrder.address}, ${procOrder.city}, ${procOrder.postalCode}, ${procOrder.country}`}

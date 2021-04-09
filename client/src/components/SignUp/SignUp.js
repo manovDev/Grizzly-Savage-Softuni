@@ -4,6 +4,7 @@ import { useHistory, Link } from 'react-router-dom';
 import { validateField } from './helpers/formValidation';
 import { connect } from 'react-redux';
 import { signUp } from '../../actions/userActions';
+import { Spinner } from 'react-bootstrap'
 
 import MainLayout from '../layouts/MainLayout';
 import './SignUp.scss';
@@ -30,6 +31,8 @@ const SignUp = ({ signUp, user }) => {
     const [profileImageFile, setProfileImageFile] = useState({
         profileImage: null,
     });
+
+    const [isLoading, setIsLoading] = useState(false);
 
     const handleChange = (e) => {
             
@@ -95,11 +98,18 @@ const SignUp = ({ signUp, user }) => {
         e.preventDefault();
 
         if (formData.firstName && formData.lastName && formData.email && formData.password && formData.profileImage) {
+            
+            setIsLoading(true);
+
                 try {
                     await signUp(formData, profileImageFile.profileImage);
 
+                    setIsLoading(false);
+
                     history.push('/sign-in');   
                 } catch (res) {
+                    setIsLoading(false);
+
                     console.log(res.error);
                 }      
         }
@@ -177,7 +187,16 @@ const SignUp = ({ signUp, user }) => {
 
                     {signUpErr 
                         ? <button className="dis-btn" disabled>Register</button>
-                        : <button>Register</button>
+                        : <button>
+                            {isLoading
+                                ?   
+                                    <div className="loader">
+                                        <Spinner animation="border" variant="warning" />
+                                    </div>
+                                : 
+                                    'Register'
+                            }
+                        </button>
                     }
                     </form>
                     <div className="new-customer">

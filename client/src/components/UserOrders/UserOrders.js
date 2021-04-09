@@ -1,18 +1,32 @@
 import { connect } from 'react-redux';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { getAll as getAllOrders } from '../../actions/orderActions';
-
+import { Spinner } from 'react-bootstrap'
 import ViewButton from './ViewButton';
 import MainLayout from '../layouts/MainLayout';
 import './UserOrders.scss';
 
 const UserOrders = ({ user, orders, getAllOrders }) => {
-    useEffect(() => {
+    const [isLoading, setIsLoading] = useState(false);
+
+    useEffect(async () => {
+        setIsLoading(true);
+
         if(user) {
-            getAllOrders(user.idToken);
+            getAllOrders(user.idToken)
+                .then(() => {
+
+                    setIsLoading(false);
+                })
+                .catch((err) => {
+                    setIsLoading(false);
+                    
+                    console.log(err);
+                });
+
         }
         
-    }, [getAllOrders]);
+    }, [user, getAllOrders]);
 
     return (
         <MainLayout>
@@ -31,10 +45,20 @@ const UserOrders = ({ user, orders, getAllOrders }) => {
                     </thead>
                     <tbody>
                         {
-                            orders && orders
+                        isLoading
+                            ?   
+                                <tr>
+                                    <td>
+                                        <div className="loader">
+                                            <Spinner animation="border" variant="warning" />
+                                        </div>
+                                    </td>
+                                    
+                                </tr>
+                            : orders
                                 .map((order) =>
                                     (
-                                        <tr>
+                                        <tr key={order._id}>
                                             <td width="40%">{order._id}</td>
                                             <td width="30%">{order.qtty}</td>
                                             <td width="10%">{`$${(order.totalPrice + order.tax).toFixed(2)}`}</td>

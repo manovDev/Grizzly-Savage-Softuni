@@ -7,6 +7,10 @@
     flex-flow: wrap column;
     align-items: center;
     
+    .loader {
+        margin-top: 200px;
+    }
+
     .shipping-form {
         color: #251607;
         display: flex;

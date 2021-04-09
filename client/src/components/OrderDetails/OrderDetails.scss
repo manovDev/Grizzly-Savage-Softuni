@@ -7,6 +7,13 @@
     justify-content: space-around;
     padding-left: 90px;
 
+    .loader {
+        height: 500px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
     .order-detail-title {
         width: 100%;
         text-align: left;

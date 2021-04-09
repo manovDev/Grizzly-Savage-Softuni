@@ -29,8 +29,9 @@ const nameValidation = (value) => {
 }
 
 const profileImageValidation = (value) => {
+    console.log(value);
     if (!value) {
-        return "I must upload an image!";
+        return "You must upload an image!";
     } else  {
         return false;
     }
