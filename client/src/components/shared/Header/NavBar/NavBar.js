@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import gsLogo from './assets/grizzly-savage-logo.png';
 import CartLink from './CartLink';
 
-import SearchProducts from './SearchProducts';
+import SearchProductsInput from './SearchProductsInput';
 import ProfileNav from './ProfileNav';
 import './NavBar.scss';
 
@@ -13,7 +13,7 @@ const NavBar = ({ user }) => {
     return (
         <div className="nav-wrapper">
             <nav>
-                <SearchProducts />
+                <SearchProductsInput />
 
                 <ul className="nav-links">
                     <li>
