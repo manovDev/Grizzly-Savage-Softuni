@@ -75,6 +75,8 @@ export const signIn = (email, password) => async (dispatch) => {
             })
             .then(res => res.json())
             .then(user => {
+                verifyAuth();
+
                 const ref = storage.ref(user._id + "/");
                 var storageRef = ref.child(user.profileImage);
 
