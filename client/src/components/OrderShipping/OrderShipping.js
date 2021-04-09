@@ -47,7 +47,8 @@ const OrderShipping = ({ user }) => {
                     ...curr,
                     ...stateForm,
                     firstName: user.firstName,
-                    lastName: user.lastName
+                    lastName: user.lastName,
+                    userId: user._id
                 }
             });
             history.push('confirm');
