@@ -20,13 +20,13 @@ const signUp = ({ firstName, lastName, email, password, profileImage }) => {
 }
 
 const signIn = async ({ uid }) => {
-    const user = await User.findOne({ uid }).exec();
+    const user = await User.findOne({ uid }).populate('orders').exec();
 
     return user;
 }
 
 const verifyUser = async ({ uid }) => {
-    const user = await User.findOne({ uid }).exec();
+    const user = await User.findOne({ uid }).populate('orders').exec();
 
     return user;
 }
@@ -34,5 +34,5 @@ const verifyUser = async ({ uid }) => {
 module.exports = {
     signUp,
     signIn,
-    verifyUser
+    verifyUser,
 }
