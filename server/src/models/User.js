@@ -26,6 +26,11 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    orders: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Order',
+        default: []
+    }],
     date: {
         type: Date,
         default: Date.now
