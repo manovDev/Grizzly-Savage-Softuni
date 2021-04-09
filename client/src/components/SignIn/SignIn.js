@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Spinner } from 'react-bootstrap'
 import { Redirect } from 'react-router';
 import useForm from '../../hooks/useForm';
 import { useHistory, Link } from 'react-router-dom';
@@ -13,22 +14,31 @@ const SignIn = ({ signIn, user }) => {
 
     const [stateForm, setStateForm] = useForm({ email: '', password: '' });
     const [errState, setErrValues] = useState({ emailErr: false, signInErr: false });
+    const [isLoading, setIsLoading] = useState(false);
 
+
+    
     const submitForm = async (e) => {
         e.preventDefault();
-
+        
         if (stateForm.email && stateForm.password) {
-            try {
-                await signIn(stateForm.email, stateForm.password);
+            
+                setIsLoading(true);
 
-                history.push('/');;
-            } catch (err) {
-                setErrValues((currentErrState) => ({
-                    ...currentErrState,
-                    signInErr: "Email and password doesn't match!"
-                }))
-                
-            }
+                signIn(stateForm.email, stateForm.password)
+                    .then(() => {
+                        setIsLoading(false);
+                        history.push('/');
+                    })
+                    .catch(err => {
+                        setIsLoading(false);
+                        
+                        setErrValues((currentErrState) => ({
+                            ...currentErrState,
+                            signInErr: "Email and password doesn't match!"
+                        }))
+                    });
+
         }
     }
 
@@ -91,9 +101,18 @@ const SignIn = ({ signIn, user }) => {
                             />
 
                         {stateForm.email && stateForm.password && !errState.emailErr
-                        ? <button>Login</button>
+                        ? <button>
+                                {isLoading
+                                    ?   
+                                        <div className="loader">
+                                            <Spinner animation="border" variant="warning" />
+                                        </div>
+                                    : 
+                                        'Login'
+                                }
+                            </button>
                         : <button className="dis-btn" disabled>Login</button>
-                    }
+                        }
                     </form>
                     <div className="new-customer">
                         New customer?
