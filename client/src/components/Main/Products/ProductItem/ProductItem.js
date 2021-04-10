@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import { useState } from 'react';
-
+import { useContext } from 'react';
+import { Notify } from '../../../../contexts/Notify';
 import { addToCart } from '../../../../actions/cartActions';
 
 import { Link } from 'react-router-dom';
@@ -18,6 +19,7 @@ const ProductItem = ({
     }
 }) => {
     const [counter, setCounter] = useState(1);
+    const { notify, setNotify } = useContext(Notify);
 
     const incCounter = (cartProducts, productsId) => {
         setCounter(curr => curr += 1);
@@ -27,6 +29,8 @@ const ProductItem = ({
     const handleAddToCart = () => {
         incCounter(cart.products, _id);
         addToCart(_id, counter);
+
+        setNotify({type: 'success', msg: 'Item added to cart!'});
     }
 
     return (
