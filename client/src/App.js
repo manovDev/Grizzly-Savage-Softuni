@@ -20,6 +20,7 @@ import OrderPayment from './components/OrderPayment';
 import OrderSuccess from './components/OrderSuccess';
 import UserOrders from './components/UserOrders';
 import OrderDetails from './components/OrderDetails';
+import ProfilePage from './components/ProfilePage';
 import './App.css';
 
 function App({ verifyAuth }) {
@@ -50,6 +51,8 @@ function App({ verifyAuth }) {
                                     <Route path="/cart" component={CartPage} />
 
                                     <Route path="/product/:productId" component={ProductDetails} />
+
+                                    <LoggedRoute exact path="/profile" component={ProfilePage} />
 
                                     <LoggedRoute path="/order/shipping" component={OrderShipping} />
                                     
