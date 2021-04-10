@@ -25,6 +25,7 @@ import AboutUs from './components/AboutUs';
 import Faq from './components/Faq';
 import ContactUs from './components/ContactUs';
 import DashboardPage from './components/Dashboard/DashboardPage';
+import DashboardOrders from './components/Dashboard/DashboardOrders';
 import './App.css';
 
 function App({ verifyAuth }) {
@@ -63,6 +64,9 @@ function App({ verifyAuth }) {
                                     <Route path="/product/:productId" component={ProductDetails} />
 
                                     <LoggedRoute exact path="/dashboard" component={DashboardPage} />
+
+                                    <LoggedRoute exact path="/dashboard/orders" component={DashboardOrders} />
+
                                     <LoggedRoute exact path="/profile" component={ProfilePage} />
 
                                     <LoggedRoute path="/order/shipping" component={OrderShipping} />
