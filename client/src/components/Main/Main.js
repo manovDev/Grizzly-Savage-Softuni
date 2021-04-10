@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 
 import MainLayout from '../layouts/MainLayout';
+import FilterBox from './FilterBox';
 import Products from '../Main/Products';
 import './Main.scss';
 
@@ -9,6 +10,7 @@ const Main = ({ user }) => {
         <>
             <MainLayout>
                 <main className="main-wrapper">
+                    <FilterBox />
                     <Products />
                 </main>
             </MainLayout>
