@@ -5,6 +5,7 @@ import { verifyAuth } from './actions/userActions';
 import { ProcessingOrder } from './contexts/ProcessingOrder';
 import { SearchProducts } from './contexts/SearchProducts';
 import { Notify } from './contexts/Notify';
+import { Filter } from './contexts/Filter';
 
 import NotifyBox from './components/shared/NotifyBox';
 import LoggedRoute from './components/LoggedRoute';
@@ -29,6 +30,7 @@ function App({ verifyAuth }) {
     const [procOrder, setProcOrder] = useState("");
     const [searchProducts, setSearchProducts] = useState("");
     const [notify, setNotify] = useState("");
+    const [filter, setFilter] = useState({ price: 1000, category: "", brand: "" });
 
     return (
         <div className="App">
@@ -36,32 +38,34 @@ function App({ verifyAuth }) {
                 <Notify.Provider value={{ notify, setNotify }}>
                     <NotifyBox />
                     <SearchProducts.Provider value={{ searchProducts, setSearchProducts }}>
-                        <ProcessingOrder.Provider value={{ procOrder, setProcOrder }}>
-                            <Switch>
-                                <Route exact path="/" component={Main} />
+                        <Filter.Provider value={{ filter, setFilter }}>
+                            <ProcessingOrder.Provider value={{ procOrder, setProcOrder }}>
+                                <Switch>
+                                    <Route exact path="/" component={Main} />
 
-                                <Route path="/sign-in" component={SignIn} />
-                                
-                                <Route path="/sign-up" component={SignUp} />
+                                    <Route path="/sign-in" component={SignIn} />
                                     
-                                <Route path="/cart" component={CartPage} />
+                                    <Route path="/sign-up" component={SignUp} />
+                                        
+                                    <Route path="/cart" component={CartPage} />
 
-                                <Route path="/product/:productId" component={ProductDetails} />
+                                    <Route path="/product/:productId" component={ProductDetails} />
 
-                                <LoggedRoute path="/order/shipping" component={OrderShipping} />
-                                
-                                <LoggedRoute path="/order/confirm" component={OrderConfirm} />
+                                    <LoggedRoute path="/order/shipping" component={OrderShipping} />
+                                    
+                                    <LoggedRoute path="/order/confirm" component={OrderConfirm} />
 
-                                <LoggedRoute path="/order/payment" component={OrderPayment} />
+                                    <LoggedRoute path="/order/payment" component={OrderPayment} />
 
-                                <LoggedRoute path="/order/success" component={OrderSuccess} />
+                                    <LoggedRoute path="/order/success" component={OrderSuccess} />
 
-                                <LoggedRoute exact path="/orders" component={UserOrders} />
+                                    <LoggedRoute exact path="/orders" component={UserOrders} />
 
-                                <LoggedRoute path="/orders/:orderId" component={OrderDetails} /> */}
+                                    <LoggedRoute path="/orders/:orderId" component={OrderDetails} /> */}
 
-                            </Switch> 
-                        </ProcessingOrder.Provider>
+                                </Switch> 
+                            </ProcessingOrder.Provider>
+                        </Filter.Provider>
                     </SearchProducts.Provider>
                 </Notify.Provider>
             </Router>
