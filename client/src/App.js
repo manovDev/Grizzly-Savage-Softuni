@@ -28,6 +28,7 @@ import DashboardPage from './components/Dashboard/DashboardPage';
 import DashboardOrders from './components/Dashboard/DashboardOrders';
 import DashboardProducts from './components/Dashboard/DashboardProducts';
 import DashboardCategories from './components/Dashboard/DashboardCategories';
+import DashboardBrands from './components/Dashboard/DashboardBrands';
 import './App.css';
 
 function App({ verifyAuth }) {
@@ -72,6 +73,8 @@ function App({ verifyAuth }) {
                                     <LoggedRoute exact path="/dashboard/products" component={DashboardProducts} />
 
                                     <LoggedRoute exact path="/dashboard/categories" component={DashboardCategories} />
+
+                                    <LoggedRoute exact path="/dashboard/brands" component={DashboardBrands} />
 
                                     <LoggedRoute exact path="/profile" component={ProfilePage} />
 
