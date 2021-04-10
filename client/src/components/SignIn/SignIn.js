@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { Spinner } from 'react-bootstrap'
 import { Redirect } from 'react-router';
 import useForm from '../../hooks/useForm';
+import { useContext } from 'react';
+import { Notify } from '../../contexts/Notify';
 import { useHistory, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { signIn } from '../../actions/userActions'
@@ -15,8 +17,7 @@ const SignIn = ({ signIn, user }) => {
     const [stateForm, setStateForm] = useForm({ email: '', password: '' });
     const [errState, setErrValues] = useState({ emailErr: false, signInErr: false });
     const [isLoading, setIsLoading] = useState(false);
-
-
+    const { notify, setNotify } = useContext(Notify);
     
     const submitForm = async (e) => {
         e.preventDefault();
@@ -29,6 +30,8 @@ const SignIn = ({ signIn, user }) => {
                     .then(() => {
                         setIsLoading(false);
                         history.push('/');
+
+                        setNotify({type: 'success', msg: 'Logged in successfully!'});
                     })
                     .catch(err => {
                         setIsLoading(false);
@@ -37,6 +40,8 @@ const SignIn = ({ signIn, user }) => {
                             ...currentErrState,
                             signInErr: "Email and password doesn't match!"
                         }))
+
+                        setNotify({type: 'error', msg: 'Oops, something went wrong!'});
                     });
 
         }
