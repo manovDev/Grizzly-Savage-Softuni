@@ -28,16 +28,16 @@ const BrandFilter = () => {
         <div className="brand-filter-wrapper">
             <p>Brand:</p>
 
-            <label class="brand-option">All Brands
+            <label className="brand-option">All Brands
                 <input type="radio" name="radio" value="" onChange={handleBrandFilter}/>
-                <span class="checkmark"></span>
+                <span className="checkmark"></span>
             </label>
             {
                 brands
                 ? brands.map(brand => (
-                    <label key={brand._id} class="brand-option">{brand.name}
+                    <label key={brand._id} className="brand-option">{brand.name}
                         <input type="radio" name="radio" value={brand.name} onChange={handleBrandFilter}/>
-                        <span class="checkmark"></span>
+                        <span className="checkmark"></span>
                     </label>
                 ))
                 : ''
