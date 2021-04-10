@@ -24,6 +24,7 @@ import ProfilePage from './components/ProfilePage';
 import AboutUs from './components/AboutUs';
 import Faq from './components/Faq';
 import ContactUs from './components/ContactUs';
+import DashboardPage from './components/Dashboard/DashboardPage';
 import './App.css';
 
 function App({ verifyAuth }) {
@@ -61,6 +62,7 @@ function App({ verifyAuth }) {
 
                                     <Route path="/product/:productId" component={ProductDetails} />
 
+                                    <LoggedRoute exact path="/dashboard" component={DashboardPage} />
                                     <LoggedRoute exact path="/profile" component={ProfilePage} />
 
                                     <LoggedRoute path="/order/shipping" component={OrderShipping} />
