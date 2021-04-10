@@ -4,7 +4,9 @@ import { connect } from 'react-redux';
 import { verifyAuth } from './actions/userActions';
 import { ProcessingOrder } from './contexts/ProcessingOrder';
 import { SearchProducts } from './contexts/SearchProducts';
+import { Notify } from './contexts/Notify';
 
+import NotifyBox from './components/shared/NotifyBox';
 import LoggedRoute from './components/LoggedRoute';
 import Main from './components/Main';
 import SignIn from './components/SignIn';
@@ -26,19 +28,22 @@ function App({ verifyAuth }) {
     
     const [procOrder, setProcOrder] = useState("");
     const [searchProducts, setSearchProducts] = useState("");
+    const [notify, setNotify] = useState("");
 
     return (
         <div className="App">
             <Router>
-                <SearchProducts.Provider value={{ searchProducts, setSearchProducts }}>
-                    <ProcessingOrder.Provider value={{ procOrder, setProcOrder }}>
-                        <Switch>
-                            <Route exact path="/" component={Main} />
+                <Notify.Provider value={{ notify, setNotify }}>
+                    <NotifyBox />
+                    <SearchProducts.Provider value={{ searchProducts, setSearchProducts }}>
+                        <ProcessingOrder.Provider value={{ procOrder, setProcOrder }}>
+                            <Switch>
+                                <Route exact path="/" component={Main} />
 
-                            <Route path="/sign-in" component={SignIn} />
-                            
-                            <Route path="/sign-up" component={SignUp} />
+                                <Route path="/sign-in" component={SignIn} />
                                 
+                                <Route path="/sign-up" component={SignUp} />
+                                    
                                 <Route path="/cart" component={CartPage} />
 
                                 <Route path="/product/:productId" component={ProductDetails} />
@@ -55,9 +60,10 @@ function App({ verifyAuth }) {
 
                                 <LoggedRoute path="/orders/:orderId" component={OrderDetails} /> */}
 
-                        </Switch> 
-                    </ProcessingOrder.Provider>
-                </SearchProducts.Provider>
+                            </Switch> 
+                        </ProcessingOrder.Provider>
+                    </SearchProducts.Provider>
+                </Notify.Provider>
             </Router>
         </div>
     );
