@@ -14,8 +14,6 @@ const ProfilePage = ({ user }) => {
 
         if(user.user) {
             setIsLoading(false);
-        } else {
-            return <Redirect to='/' />
         }
 
     }, [user]);
