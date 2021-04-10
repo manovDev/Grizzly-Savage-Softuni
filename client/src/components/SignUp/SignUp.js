@@ -1,4 +1,6 @@
 import { Redirect } from 'react-router';
+import { useContext } from 'react';
+import { Notify } from '../../contexts/Notify';
 import { useState, useEffect, useCallback } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 import { validateField } from './helpers/formValidation';
@@ -11,6 +13,7 @@ import './SignUp.scss';
 
 const SignUp = ({ signUp, user }) => {
     const history = useHistory();
+    const { notify, setNotify } = useContext(Notify);
     
     const [formData, setFormData] = useState({
         firstName: null,
@@ -106,9 +109,14 @@ const SignUp = ({ signUp, user }) => {
 
                     setIsLoading(false);
 
-                    history.push('/sign-in');   
+                    history.push('/sign-in');
+
+                    setNotify({type: 'success', msg: 'Registration successful!'});
+
                 } catch (res) {
                     setIsLoading(false);
+
+                    setNotify({type: 'error', msg: 'Oops, something went wrong!'});
 
                     console.log(res.error);
                 }      
