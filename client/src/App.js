@@ -23,6 +23,7 @@ import OrderDetails from './components/OrderDetails';
 import ProfilePage from './components/ProfilePage';
 import AboutUs from './components/AboutUs';
 import Faq from './components/Faq';
+import ContactUs from './components/ContactUs';
 import './App.css';
 
 function App({ verifyAuth }) {
@@ -47,6 +48,8 @@ function App({ verifyAuth }) {
                                     <Route exact path="/" component={Main} />
 
                                     <Route path="/about-us" component={AboutUs} />
+
+                                    <Route path="/contact-us" component={ContactUs} />
 
                                     <Route path="/faq" component={Faq} />
 
