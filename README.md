@@ -22,7 +22,6 @@ When the user add a product to the car he can access it from the cart icon in th
 The admin users have access to the dashboard where they can create, edit and delete products, orders, categories, brands and more...
 
 * The admin functionality is still under development
-* The filter functionality is still under development
 
 ## Project Architecture - Basic Overview (important directories)
 
