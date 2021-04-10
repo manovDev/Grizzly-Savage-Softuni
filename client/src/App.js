@@ -21,6 +21,7 @@ import OrderSuccess from './components/OrderSuccess';
 import UserOrders from './components/UserOrders';
 import OrderDetails from './components/OrderDetails';
 import ProfilePage from './components/ProfilePage';
+import AboutUs from './components/AboutUs';
 import './App.css';
 
 function App({ verifyAuth }) {
@@ -43,6 +44,8 @@ function App({ verifyAuth }) {
                             <ProcessingOrder.Provider value={{ procOrder, setProcOrder }}>
                                 <Switch>
                                     <Route exact path="/" component={Main} />
+
+                                    <Route path="/about-us" component={AboutUs} />
 
                                     <Route path="/sign-in" component={SignIn} />
                                     
