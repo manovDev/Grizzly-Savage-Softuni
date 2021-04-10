@@ -25,7 +25,7 @@ const Slider = () => {
                 min="0"
                 max="1000"
                 value={filter.price}
-                class="slider"
+                className="slider"
                 />
         </div>
     );

@@ -20,6 +20,10 @@ import OrderPayment from './components/OrderPayment';
 import OrderSuccess from './components/OrderSuccess';
 import UserOrders from './components/UserOrders';
 import OrderDetails from './components/OrderDetails';
+import ProfilePage from './components/ProfilePage';
+import AboutUs from './components/AboutUs';
+import Faq from './components/Faq';
+import ContactUs from './components/ContactUs';
 import './App.css';
 
 function App({ verifyAuth }) {
@@ -43,6 +47,12 @@ function App({ verifyAuth }) {
                                 <Switch>
                                     <Route exact path="/" component={Main} />
 
+                                    <Route path="/about-us" component={AboutUs} />
+
+                                    <Route path="/contact-us" component={ContactUs} />
+
+                                    <Route path="/faq" component={Faq} />
+
                                     <Route path="/sign-in" component={SignIn} />
                                     
                                     <Route path="/sign-up" component={SignUp} />
@@ -50,6 +60,8 @@ function App({ verifyAuth }) {
                                     <Route path="/cart" component={CartPage} />
 
                                     <Route path="/product/:productId" component={ProductDetails} />
+
+                                    <LoggedRoute exact path="/profile" component={ProfilePage} />
 
                                     <LoggedRoute path="/order/shipping" component={OrderShipping} />
                                     

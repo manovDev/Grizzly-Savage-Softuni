@@ -28,16 +28,16 @@ const CategoryFilter = () => {
         <div className="category-filter-wrapper">
             <p>Category:</p>
 
-            <label class="category-option">All Categories
+            <label className="category-option">All Categories
                 <input type="radio" name="radio" value="" onChange={handleCategoryFilter}/>
-                <span class="checkmark"></span>
+                <span className="checkmark"></span>
             </label>
             {
                 categories
                 ? categories.map(category => (
-                    <label key={category._id} class="category-option">{category.name}
+                    <label key={category._id} className="category-option">{category.name}
                         <input type="radio" name="radio" value={category.name} onChange={handleCategoryFilter}/>
-                        <span class="checkmark"></span>
+                        <span className="checkmark"></span>
                     </label>
                 ))
                 : ''
