@@ -35,20 +35,22 @@ const OrderSummary = ({ user, cart, setProcOrder }) => {
             </div>
             <div className="order-summary-buttons">
             {
-                user ? (
-                    <>
-                        <button
-                            className="check-out-btn"
-                            onClick={handleCheckOut}>Check Out</button>
-                    </>
-                ) : (
+                user 
+                    ?
+                        cart.products.length === 0
+                        ?
+                            <button className="check-out-btn dis-btn" disabled>Check Out</button>
+                        :
+                            <button
+                                className="check-out-btn"
+                                onClick={handleCheckOut}>Check Out</button>
+                    : 
                     <>
                         <button
                             className="must-login-btn"
                             onClick={redirectToLogin}>Login</button>
                         <span className="must-login-msg">You must login to place your order!</span>
                     </>
-                )
             }
             </div>
         </div>
