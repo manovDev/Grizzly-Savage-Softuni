@@ -54,10 +54,21 @@ export const verifyAuth = () => (dispatch) => {
 
             if(userData._id) {
                 userData.idToken = idToken;
-                
-                localStorage.setItem('user', JSON.stringify(user));
 
-                dispatch(signInSuccess({user: userData}));
+                const ref = storage.ref(userData._id + "/");
+                var storageRef = ref.child(userData.profileImage);
+
+                return storageRef.getDownloadURL()
+                    .then(profileImgUrl => {
+                        userData.profileImage = profileImgUrl;
+
+                        localStorage.setItem('user', JSON.stringify(userData));
+
+                        return dispatch(signInSuccess({ user: userData }));
+                    })
+                    .catch(err => {
+                        return err;
+                    })
             }
         } else {
             dispatch(verify());
@@ -71,13 +82,12 @@ export const signIn = (email, password) => async (dispatch) => {
                 const uid = firebaseRes.user.uid;
                 const idToken = firebaseRes.user.za;
 
-                const userData = singInService(uid, idToken);
+                return singInService(uid, idToken)
+                        .then((userData) => {
+                            userData.idToken = idToken;
 
-                if(userData._id) {
-                    userData.idToken = idToken;
-
-                    return userData;
-                }
+                            return userData;
+                        })
             })
             .then(res => res.json())
             .then(user => {
