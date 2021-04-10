@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
-
 import { Link } from 'react-router-dom';
-
+import { useContext } from 'react';
+import { Notify } from '../../../contexts/Notify';
 import ProductCounter from './ProductCounter';
 import { removeProduct } from '../../../actions/cartActions';
 
@@ -9,8 +9,12 @@ import { BsFillTrashFill as RemoveIcon } from 'react-icons/bs';
 import './CartList.scss';
 
 const CartList = ({ user, cart, removeProduct }) => {
+    const { notify, setNotify } = useContext(Notify);
+
     const handleRemoveProduct = (e) => {
         removeProduct(e.currentTarget.id);
+        
+        setNotify({type: 'success', msg: 'Removed an item successfully!'});
     }
 
     return (

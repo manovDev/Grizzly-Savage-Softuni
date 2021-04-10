@@ -1,14 +1,17 @@
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { signOut } from '../../../../../actions/userActions';
-
+import { useContext } from 'react';
+import { Notify } from '../../../../../contexts/Notify';
 import { BsFillPersonFill } from 'react-icons/bs';
 import './ProfileNav.scss';
 
 const ProfileNav = ({ user, signOut }) => {
+    const { notify, setNotify } = useContext(Notify);
 
     const handleSignOut =  () => {
         signOut();
+        setNotify({type: 'success', msg: 'Logged out successfully!'});
     }
 
     return (
