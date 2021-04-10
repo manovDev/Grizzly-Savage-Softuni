@@ -16,6 +16,18 @@
                 fill: orange;
             }
         }
+
+        img {
+            width: 40px;
+            border-radius: 50%;
+            box-shadow: 0px 0px 2px 2px orange;
+            transition: all 0.2s ease-in-out;
+            opacity: 1;
+
+            &:hover {
+                opacity: 0.5;
+            }
+        }
     }
 
     .profile-icon-wrapper:hover + ul {

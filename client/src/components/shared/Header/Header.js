@@ -4,9 +4,10 @@ import NavBar from './NavBar';
 import './Header.scss';
 
 function Header({ user }) {
-    return (
-        <header className="header">
+    const path = window.location.pathname.split('/')[1];
 
+    return (
+        <header className={`${path === '' ? 'header sticky' : 'header'}`}>
             <NavBar user={user} />
 
         </header>

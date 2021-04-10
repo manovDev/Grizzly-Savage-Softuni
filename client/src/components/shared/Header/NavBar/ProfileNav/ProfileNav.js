@@ -14,7 +14,11 @@ const ProfileNav = ({ user, signOut }) => {
     return (
         <div className="profile-nav">
             <span className="profile-icon-wrapper">
-                <BsFillPersonFill />
+                {
+                    user && user.profileImage
+                        ? <img src={user && user.profileImage} alt=""/>
+                        : <BsFillPersonFill />
+                }
             </span>
             <ul>
                 {
