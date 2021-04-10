@@ -1,0 +1,37 @@
+.title-separator-wrapper {
+    display: flex;
+    justify-content: center;
+
+    h1 {
+        z-index: 1;
+        margin-bottom: 50px;
+        position: relative;
+        line-height: 1.1;
+        letter-spacing: 2px;
+        padding-bottom: 50px;
+        display: inline-block;
+        text-transform: uppercase;
+        font-size: 36px;
+        font-weight: 900;
+        width: 100%;
+        text-align: center;
+        color: #234465;
+        padding-right: 220px;
+
+        &::after {
+            background: url('./assets/moutain-separator.png') no-repeat;
+            background-position-x: 0%;
+            background-position-y: 0%;
+            background-position: center;
+            position: absolute;
+            content: "";
+            height: 30px;
+            width: 340px;
+            margin: auto;
+            z-index: -1;
+            left: 0px;
+            right: 220px;
+            bottom: 0;
+        }
+    }
+}

@@ -4,6 +4,7 @@ import { getAll as getAllProducts } from '../../../actions/productActions';
 import { useContext } from 'react';
 import { SearchProducts } from '../../../contexts/SearchProducts';
 import { Spinner } from 'react-bootstrap'
+import TitleSeparator from '../../shared/TitleSeparator';
 import ProductItem from './ProductItem';
 import './Products.scss'
 
@@ -18,7 +19,7 @@ const Products = ({ products, getAllProducts }) => {
 
     return (
         <section className="products-wrapper">
-
+            <TitleSeparator title="Products"/>
             <ul>
                 {products.length === 0
                     ?   (
