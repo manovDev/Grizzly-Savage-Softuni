@@ -1,2 +1,38 @@
 .notify-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    left: 50%;
+    margin-left: -150px;
+    min-width: 200px;
+    height: 50px;
+    color: white;
+    border-radius: 5px;
+    z-index: 2;
+    box-shadow: 0px 0px 2px 2px lightgray;
+    top: -300px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    padding: 0 40px;
+
+    .close-icon {
+        position: absolute;
+        right: 10px;
+        top: 0px;
+        font-size: 20px;
+    }
+}
+
+.success {
+    background-color: #2b3;
+}
+
+.error {
+    background-color: #ff3333;
+}
+
+.show {
+    top: 200px;
 }
