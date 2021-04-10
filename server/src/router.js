@@ -8,5 +8,5 @@ router.use('/product', controllers.product);
 router.use('/category', controllers.category);
 router.use('/brand', controllers.brand);
 router.use('/order', controllers.order);
- 
+
 module.exports = router;
