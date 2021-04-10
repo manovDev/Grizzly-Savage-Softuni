@@ -22,7 +22,7 @@ const NavBar = ({ user }) => {
                         </Link>
                     </li>
                     <li>
-                        <Link to="/">
+                        <Link to="/about-us">
                             ABOUT US
                         </Link>
                     </li>
@@ -34,12 +34,12 @@ const NavBar = ({ user }) => {
                         </Link>
                     </li>
                     <li>
-                        <Link to="/">
+                        <Link to="/faq">
                             FAQ
                         </Link>
                     </li>
                     <li>
-                        <Link to="/">
+                        <Link to="/contact-us">
                             CONTACT US
                         </Link>
                     </li>

@@ -1,0 +1,25 @@
+.profile-page-wrapper {
+    width: 100%;
+    max-width: 1440px;
+    margin-top: 70px;
+    display: flex;
+    flex-flow: wrap column;
+    align-items: center;
+
+    h1 {
+        color: #234465;
+    }
+
+    .profile-content {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        margin-top: 50px;
+        width: 100%;
+
+        .loader {
+            margin-top: 150px;
+        }
+    }
+
+}

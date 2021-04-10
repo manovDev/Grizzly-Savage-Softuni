@@ -1,0 +1,44 @@
+.about-us-wrapper {
+    width: 100%;
+    max-width: 1440px;
+    margin-top: 70px;
+    display: flex;
+    flex-flow: wrap column;
+    align-items: center;
+
+    h1 {
+        color: #234465;
+    }
+
+    .about-us-content {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        margin-top: 50px;
+        width: 100%;
+
+        .about-us-image-wrapper {
+            img {
+                width: 100%;
+            }
+        }
+        
+        .about-us-info-wrapper {
+            display: flex;
+            flex-flow: wrap column;
+            width: 100%;
+            padding: 0px 100px 100px 100px;
+
+            h2 {
+                margin-bottom: 60px;
+                color: orange;
+            }
+
+            p {
+                line-height: 30px;
+                color: #234465;
+                font-weight: 500;
+            }
+        }
+    }
+}

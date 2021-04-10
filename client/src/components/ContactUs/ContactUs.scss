@@ -1,0 +1,102 @@
+.contact-us-wrapper {
+    width: 100%;
+    max-width: 1440px;
+    margin-top: 70px;
+    display: flex;
+    flex-flow: wrap column;
+    align-items: center;
+
+    h1 {
+        color: #234465;
+    }
+
+    .contact-us-content {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        margin-top: 50px;
+        width: 100%;
+
+        .contact-info-wrapper {
+            width: 300px;
+        
+            .info-container {
+                height: 100px;
+        
+                h2 {
+                    color: gray;
+                    font-size: 24px;
+                }
+        
+                p {
+                    font-weight: 500;
+                }
+            }
+        
+            a {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+                height: 30px;
+                color: white;
+                font-weight: 500;
+                text-decoration: none;
+                border-radius: 5px;
+                background-color: #D6313E;
+                opacity: 1;
+                transition: all 0.2s ease-in-out;
+        
+                &:hover {
+                    opacity: 0.5;
+                }
+            }
+        }
+
+        form {
+            width: 300px;
+            display: flex;
+            flex-flow: wrap column;
+            position: relative;
+
+            label {
+                font-weight: 500;
+                margin-top: 20px;
+            }
+
+            input,
+            textarea {
+                border: none;
+                outline: none;
+                border-radius: 3px;
+                box-shadow: 0px 0px 2px 0px grey;
+                background-color: #ffffff;
+                padding: 3px 10px 3px 10px;
+            }
+
+            textarea {
+                resize: none;
+            }
+
+
+            button {
+                border: none;
+                outline: none;
+                background-color: orange;
+                width: 100%;
+                height: 50px;
+                color: white;
+                font-weight: 500;
+                border-radius: 5px;
+                transition: all 0.2s ease-in-out;
+                opacity: 1;
+                margin-top: 20px;
+                cursor: not-allowed;
+        
+                &:hover {
+                    opacity: 0.5;
+                }
+            }
+        }
+    }
+}
