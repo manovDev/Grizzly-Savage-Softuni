@@ -22,7 +22,7 @@ const NavBar = ({ user }) => {
                         </Link>
                     </li>
                     <li>
-                        <Link to="/">
+                        <Link to="/about-us">
                             ABOUT US
                         </Link>
                     </li>
