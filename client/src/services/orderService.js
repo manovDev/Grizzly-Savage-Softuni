@@ -12,3 +12,7 @@ export const getAll = (idToken) => {
 export const getOne = (orderId, idToken) => {
     return request.get(`${SERVER_ADDRESS}/order/${orderId}`, null, idToken);
 }
+
+export const patchOrder = (orderId, data, idToken) => {
+    return request.patch(`${SERVER_ADDRESS}/order/${orderId}`, data, idToken);
+}
