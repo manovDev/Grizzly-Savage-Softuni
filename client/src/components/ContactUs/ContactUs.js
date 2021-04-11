@@ -61,7 +61,6 @@ const ContactUs = () => {
                             id="messageBody"
                             name="messageBody"
                             placeholder="Message"
-                            resiz
                         > </textarea>
 
                         <button type="button">Send</button>
