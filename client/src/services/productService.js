@@ -8,3 +8,7 @@ export const getAll = () => {
 export const getOne = (productId) => {
     return request.get(`${SERVER_ADDRESS}/product/${productId}`, null, null);
 }
+
+export const create = (data) => {
+    return request.post(`${SERVER_ADDRESS}/product/create`, data, null);
+}
