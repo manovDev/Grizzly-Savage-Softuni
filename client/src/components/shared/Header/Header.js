@@ -5,7 +5,7 @@ import './Header.scss';
 
 function Header({ user }) {
     const path = window.location.pathname.split('/')[1];
-    console.log(path);
+
     return (
         <header className={`${path === '' || path.includes('dashboard') ? 'header sticky' : 'header'}`}>
             <NavBar user={user} />
