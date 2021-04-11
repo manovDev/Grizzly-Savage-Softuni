@@ -17,7 +17,7 @@ The users can can search products by name, product id and filter by category and
 If the user is logged in, he can place orders and view them and their details.
 There is also profile page where he can edit some of his account information.
 
-When the user add a product to the car he can access it from the cart icon in the nav bar and the orders from the profile icon in the nav bar.
+When the user add a product to the cart he can access it from the cart icon in the nav bar and the orders from the profile icon in the nav bar.
 
 The admin users have access to the dashboard where they can create, edit and delete products, orders, categories, brands and more...
 
