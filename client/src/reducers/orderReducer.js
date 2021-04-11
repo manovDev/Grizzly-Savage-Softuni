@@ -1,5 +1,6 @@
 import {
-    GET_ORDERS
+    GET_ORDERS,
+    PATCH_ORDER,
 } from '../actions/actionTypes';
 
 const initialState = {
@@ -13,6 +14,11 @@ const orderReducer = (state = initialState, action) => {
                 ...state,
                 orders: action.payload
             }
+        case PATCH_ORDER:
+            return {
+                ...state,
+                orders: state.orders.map(x => x._id === action.payload._id ? action.payload : x),
+            };
         default:
             return {
                 ...state
