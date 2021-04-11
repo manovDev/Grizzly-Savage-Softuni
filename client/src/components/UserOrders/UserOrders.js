@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import { useEffect, useState } from 'react';
 
 import { Spinner } from 'react-bootstrap'
-import ViewButton from './ViewButton';
+import ViewButton from '../shared/ViewButton';
 import MainLayout from '../layouts/MainLayout';
 import './UserOrders.scss';
 
