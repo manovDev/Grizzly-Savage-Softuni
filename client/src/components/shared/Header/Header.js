@@ -7,7 +7,7 @@ function Header({ user }) {
     const path = window.location.pathname.split('/')[1];
 
     return (
-        <header className={`${path === '' ? 'header sticky' : 'header'}`}>
+        <header className={`${path === '' || path.includes('dashboard') ? 'header sticky' : 'header'}`}>
             <NavBar user={user} />
 
         </header>

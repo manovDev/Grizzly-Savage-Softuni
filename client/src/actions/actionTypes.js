@@ -10,3 +10,4 @@ export const UPDATE_CART = 'UPDATE_CART';
 export const REMOVE_PRODUCT = 'REMOVE_PRODUCT';
 
 export const GET_ORDERS = 'GET_ORDERS';
+export const PATCH_ORDER = 'PATCH_ORDER';

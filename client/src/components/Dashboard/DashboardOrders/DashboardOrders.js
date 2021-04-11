@@ -1,28 +1,42 @@
 import { connect } from 'react-redux';
 import { useEffect, useState } from 'react';
-
 import { Spinner } from 'react-bootstrap'
-import ViewButton from '../shared/ViewButton';
-import MainLayout from '../layouts/MainLayout';
-import './UserOrders.scss';
+import ViewButton from '../../shared/ViewButton';
+import DashboardLayout from '../../layouts/DashboardLayout';
+import './DashboardOrders.scss';
+import {
+    getAll,
+    patchOrderAsync,
+} from '../../../actions/orderActions';
+import { AiOutlineCheck } from 'react-icons/ai';
 
-const UserOrders = ({ user }) => {
+const DashboardOrders = ({
+    user,
+    orders,
+    getAll,
+    patchOrderAsync,
+}) => {
     const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
         setIsLoading(true);
 
-        if(user) {
-            
+        if (user) {
+
             setIsLoading(false);
+            getAll(user?.idToken)
         }
-        
-    }, [ user ]);
+
+    }, [user]);
+
+    const onClickChangeStatus = (orderId) => {
+        patchOrderAsync(orderId, { status: 'Delivered' }, user?.idToken)
+    }
 
     return (
-        <MainLayout>
-            <section className="user-orders-wrapper">
-                <h1 className="user-orders-title">My Orders</h1>
+        <DashboardLayout>
+            <section className="dashboard-orders-wrapper">
+                <h1>Dashboard Orders</h1>
 
                 <table className="orders-list">
                     <thead>
@@ -36,34 +50,40 @@ const UserOrders = ({ user }) => {
                     </thead>
                     <tbody>
                         {
-                        isLoading || !user
-                            ?   
+                            isLoading || !user
+                                ?
                                 <tr>
                                     <td>
                                         <div className="loader">
                                             <Spinner animation="border" variant="warning" />
                                         </div>
                                     </td>
-                                    
+
                                 </tr>
-                            : user.orders
-                                .map((order) =>
+                                : orders
+                                    .map((order) =>
                                     (
                                         <tr key={order._id}>
                                             <td width="40%">{order._id}</td>
-                                            <td width="30%">{order.qtty}</td>
+                                            <td width="20%">{order.qtty}</td>
                                             <td width="10%">{`$${(order.totalPrice + order.tax).toFixed(2)}`}</td>
-                                            <td width="10%" 
-                                            className={order.status === 'Processing' ? 'proc-status' : 'dev-status'}
+                                            <td width="10%"
+                                                className={order.status === 'Processing' ? 'proc-status' : 'dev-status'}
                                             >{order.status}</td>
-                                            <td width="10%">
-                                                <ViewButton orderId={order._id}/>
+                                            <td width="15%">
+                                                <ViewButton orderId={order._id} />
+
+                                                {order.status === 'Processing' &&
+                                                    <button className="change-status-check" onClick={onClickChangeStatus.bind(undefined, order._id)} >
+                                                        <AiOutlineCheck />
+                                                    </button>
+                                                }
                                             </td>
                                         </tr>
                                     )
-                                )
+                                    )
                         }
-                        
+
                     </tbody>
                     <tfoot>
                         <tr>
@@ -76,12 +96,18 @@ const UserOrders = ({ user }) => {
                     </tfoot>
                 </table>
             </section>
-        </MainLayout>
+        </DashboardLayout>
     );
 }
 
 const mapStateToProps = (state) => ({
     user: state.user.user,
-});
+    orders: state.orders.orders,
+})
 
-export default connect(mapStateToProps, null)(UserOrders);
+const mapDispatchToProps = {
+    getAll,
+    patchOrderAsync,
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(DashboardOrders);
