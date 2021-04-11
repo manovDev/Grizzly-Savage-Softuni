@@ -16,7 +16,7 @@ const placeOrder = async ({
     totalPrice,
     qtty }) => {
     try {
-        
+
         const newOrder = new Order({
             firstName,
             lastName,
@@ -29,8 +29,9 @@ const placeOrder = async ({
             tax,
             products,
             totalPrice,
-            qtty });
-        
+            qtty
+        });
+
         await User.findByIdAndUpdate(userId, {
             $addToSet: {
                 orders: newOrder._id
@@ -46,7 +47,7 @@ const placeOrder = async ({
 const getAll = async () => {
     try {
         const allOrders = await Order.find();
-    
+
         return await allOrders;
     } catch (error) {
         throw error;
@@ -56,8 +57,16 @@ const getAll = async () => {
 const getOne = async (_id) => {
     try {
         const order = await Order.findById(_id);
-    
+
         return await order;
+    } catch (error) {
+        throw error;
+    }
+}
+
+const patch = async (_id, data) => {
+    try {
+        return await Order.findByIdAndUpdate(_id, data, { new: true })
     } catch (error) {
         throw error;
     }
@@ -67,4 +76,5 @@ module.exports = {
     placeOrder,
     getAll,
     getOne,
+    patch
 }

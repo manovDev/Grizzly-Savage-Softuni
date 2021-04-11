@@ -24,6 +24,12 @@ import ProfilePage from './components/ProfilePage';
 import AboutUs from './components/AboutUs';
 import Faq from './components/Faq';
 import ContactUs from './components/ContactUs';
+import DashboardPage from './components/Dashboard/DashboardPage';
+import DashboardOrders from './components/Dashboard/DashboardOrders';
+import DashboardProducts from './components/Dashboard/DashboardProducts';
+import DashboardCategories from './components/Dashboard/DashboardCategories';
+import DashboardBrands from './components/Dashboard/DashboardBrands';
+import DashboardAddProduct from './components/Dashboard/DashboardAddProduct';
 import './App.css';
 
 function App({ verifyAuth }) {
@@ -60,6 +66,18 @@ function App({ verifyAuth }) {
                                     <Route path="/cart" component={CartPage} />
 
                                     <Route path="/product/:productId" component={ProductDetails} />
+
+                                    <LoggedRoute exact path="/dashboard" component={DashboardPage} />
+
+                                    <LoggedRoute exact path="/dashboard/orders" component={DashboardOrders} />
+
+                                    <LoggedRoute exact path="/dashboard/products" component={DashboardProducts} />
+
+                                    <LoggedRoute exact path="/dashboard/products/add" component={DashboardAddProduct} />
+
+                                    <LoggedRoute exact path="/dashboard/categories" component={DashboardCategories} />
+
+                                    <LoggedRoute exact path="/dashboard/brands" component={DashboardBrands} />
 
                                     <LoggedRoute exact path="/profile" component={ProfilePage} />
 

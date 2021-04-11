@@ -36,6 +36,13 @@ const ProfileNav = ({ user, signOut }) => {
                         </>
                         : 
                         <>
+                            {
+                                user.role === 'admin'
+                                    ?   <li>
+                                            <Link to="/dashboard">Dashboard</Link>
+                                        </li>
+                                    : ''
+                            }
                             <li>
                                 <Link to="/profile">Profile</Link>
                             </li>
