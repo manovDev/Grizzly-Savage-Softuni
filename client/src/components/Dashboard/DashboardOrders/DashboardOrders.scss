@@ -5,4 +5,58 @@
     display: flex;
     flex-flow: wrap column;
     align-items: center;
+
+    .change-status-check {
+        background-color: #4dd14d;
+        margin-left: 10px;
+        border: none;
+        width: 50px;
+        height: 50px;
+        border-radius: 5px;
+        &:hover {
+            opacity: 0.5;
+        }
+    }
+
+    .orders-list {
+        tbody {
+            min-height: 200px;
+            height: 120px;
+        }
+
+        .loader {
+            position: absolute;
+            left: 50%;
+            top: 42%;
+        }
+
+        tr {
+            th,
+            td {
+                border: 1px solid #f0f0f0;
+            }
+
+            th {
+                color: #251607;
+                height: 50px;
+                padding-left: 20px;
+            }
+
+            td {
+                font-weight: 500;
+                background-color: #e9e9e9;
+                color: #04335e;
+                height: 100px;
+                padding-left: 20px;
+            }
+
+            .proc-status {
+                color: #d4333b;
+            }
+
+            .dev-status {
+                color: green;
+            }
+        }
+    }
 }
