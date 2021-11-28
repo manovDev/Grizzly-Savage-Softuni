@@ -1,7 +1,7 @@
 
 # Grizzly-Savage-Softuni React
 
-### Deployed app version - [here](https://grizzly-savage.web.app/)
+### Deployed app version - [here](https://grizzly-savage.firebaseapp.com/)
 
 ## Table of Contents
 - Description
