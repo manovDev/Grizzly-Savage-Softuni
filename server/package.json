@@ -8,7 +8,8 @@
   "main": "server.js",
   "scripts": {
     "start": "node ./src/server.js",
-    "dev": "nodemon ./src/server.js"
+    "dev": "nodemon ./src/server.js",
+    "deploy": "cd .. && git subtree push --prefix server heroku/Grizzly-Savage-Softuni-React master"
   },
   "keywords": [],
   "author": "",
