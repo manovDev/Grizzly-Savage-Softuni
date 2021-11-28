@@ -23,8 +23,7 @@ const UserSchema = new mongoose.Schema({
         default: 'user'
     },
     profileImage: {
-        type: String,
-        required: true
+        type: String
     },
     orders: [{
         type: mongoose.Schema.Types.ObjectId,

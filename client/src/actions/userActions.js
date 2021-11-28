@@ -43,32 +43,40 @@ export const signUp = (data, profileImageFile) => async (dispatch) => {
 }
 
 export const verifyAuth = () => (dispatch) => {
-    firebase.auth().onAuthStateChanged(async (user) => {
+    return firebase.auth().onAuthStateChanged(async (user) => {
         if (user) {
             
             const uid = user.uid;
             const idToken = user.za;
+
             const response = await verifyUser(uid, idToken);
 
             const userData = await response.json();
 
             if(userData._id) {
                 userData.idToken = idToken;
+                
+                if(userData.profileImage) {
+                    const ref = storage.ref(userData._id + "/");
 
-                const ref = storage.ref(userData._id + "/");
-                var storageRef = ref.child(userData.profileImage);
+                    var storageRef = ref.child(userData.profileImage);
 
-                return storageRef.getDownloadURL()
-                    .then(profileImgUrl => {
-                        userData.profileImage = profileImgUrl;
+                    return storageRef.getDownloadURL()
+                        .then(profileImgUrl => {
+                            userData.profileImage = profileImgUrl;
 
-                        localStorage.setItem('user', JSON.stringify(userData));
+                            localStorage.setItem('user', JSON.stringify(userData));
 
-                        return dispatch(signInSuccess({ user: userData }));
-                    })
-                    .catch(err => {
-                        return err;
-                    })
+                            return dispatch(signInSuccess({ user: userData }));
+                        })
+                        .catch(err => {
+                            return err;
+                        });
+                } else {
+                    localStorage.setItem('user', JSON.stringify(userData));
+
+                    return dispatch(signInSuccess({ user: userData }));
+                }
             }
         } else {
             dispatch(verify());
@@ -91,22 +99,27 @@ export const signIn = (email, password) => async (dispatch) => {
             })
             .then(res => res.json())
             .then(user => {
+                if(user.profileImage) {
+                    const ref = storage.ref(user._id + "/");
+                    var storageRef = ref.child(user.profileImage);
 
-                const ref = storage.ref(user._id + "/");
-                var storageRef = ref.child(user.profileImage);
+                    storageRef.getDownloadURL()
+                        .then(profileImgUrl => {
+                            user.profileImage = profileImgUrl;
 
-                storageRef.getDownloadURL()
-                    .then(profileImgUrl => {
-                        user.profileImage = profileImgUrl;
+                            localStorage.setItem('user', JSON.stringify(user));
 
-                        localStorage.setItem('user', JSON.stringify(user));
+                            return dispatch(signInSuccess({ user }));
+                        })
+                        .catch(err => {
+                            return err;
+                        });
+                } else {
+                    localStorage.setItem('user', JSON.stringify(user));
 
-                        return dispatch(signInSuccess({ user }));
-                    })
-                    .catch(err => {
-                        return err;
-                    })
-            })
+                    return dispatch(signInSuccess({ user }));
+                }
+            });
 }
 
 export const signOut = () => async (dispatch) => {

@@ -28,7 +28,6 @@ const SignUp = ({ signUp, user }) => {
         lastNameErr: null,
         emailErr: null,
         passwordErr: null,
-        profileImageErr: null,
     });
 
     const [profileImageFile, setProfileImageFile] = useState({
@@ -100,7 +99,7 @@ const SignUp = ({ signUp, user }) => {
     const submitForm = async (e) => {
         e.preventDefault();
 
-        if (formData.firstName && formData.lastName && formData.email && formData.password && formData.profileImage) {
+        if (formData.firstName && formData.lastName && formData.email && formData.password) {
             
             setIsLoading(true);
 

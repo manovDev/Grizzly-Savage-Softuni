@@ -28,7 +28,7 @@ router.post('/signin', verifyIdToken, async (req, res) => {
 router.post('/verifyuser', verifyIdToken, async (req, res) => {
     try {
         const userRecord = await userService.verifyUser(req.body);
-    
+
         return res.json(userRecord);
     } catch (error) {
         return res.status(400).json({ error });
