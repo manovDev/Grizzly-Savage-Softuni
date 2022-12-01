@@ -1,35 +1,35 @@
 .faq-wrapper {
-    width: 100%;
-    max-width: 1440px;
-    margin-top: 70px;
-    display: flex;
-    flex-flow: wrap column;
-    align-items: center;
+	width: 100%;
+	max-width: 1440px;
+	margin-top: 70px;
+	display: flex;
+	flex-flow: wrap column;
+	align-items: center;
 
-    h1 {
-        color: #234465;
-        margin-bottom: 50px;
-    }
+	h1 {
+		color: #214232;
+		margin-bottom: 50px;
+	}
 
-    .faq-content {
-        width: 100%;
-        max-width: 1000px;
-        margin: 0 50px;
+	.faq-content {
+		width: 100%;
+		max-width: 1000px;
+		margin: 0 50px;
 
-        .card-header {
-            background-color: orange;
+		.card-header {
+			background-color: orange;
 
-            button {
-                background-color: transparent;
-                border: none;
-                outline: none;
-                color: white;
-                font-weight: 500;
-            }
-        }
+			button {
+				background-color: transparent;
+				border: none;
+				outline: none;
+				color: white;
+				font-weight: 500;
+			}
+		}
 
-        .card-body {
-            color: #234465;
-        }
-    }
+		.card-body {
+			color: #214232;
+		}
+	}
 }

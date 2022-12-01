@@ -1,33 +1,33 @@
 .cart-link {
-    position: relative;
-    height: 45px;
-    margin-bottom: 10px;
+	position: relative;
+	height: 45px;
+	// margin-bottom: 10px;
 
-    .cart-icon-wrapper {
-        font-size: 24px;
-        cursor: pointer;
-        padding: 10px;
+	.cart-icon-wrapper {
+		font-size: 24px;
+		cursor: pointer;
+		padding: 10px;
 
-        svg {
-            fill: white;
-            transition: all 0.2s ease-in-out;
+		svg {
+			fill: white;
+			transition: all 0.2s ease-in-out;
 
-            &:hover {
-                fill: orange;
-            }
-        }
-    }
+			&:hover {
+				fill: orange;
+			}
+		}
+	}
 
-    &::after {
-        position: absolute;
-        content: attr(data-added-items);
-        width: 15px;
-        height: 16px;
-        background-color: #D4333B;
-        text-align: center;
-        right: 0;
-        border-radius: 3px;
-        font-size: 12px;
-        color: white;
-    }
+	&::after {
+		position: absolute;
+		content: attr(data-added-items);
+		width: 15px;
+		height: 16px;
+		background-color: #d4333b;
+		text-align: center;
+		right: 0;
+		border-radius: 3px;
+		font-size: 12px;
+		color: white;
+	}
 }
